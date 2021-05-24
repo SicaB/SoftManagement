@@ -8,18 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		99D2A78B2653A5C200AE2BE1 /* SoftManagementApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D2A78A2653A5C200AE2BE1 /* SoftManagementApp.swift */; };
-		99D2A78D2653A5C200AE2BE1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D2A78C2653A5C200AE2BE1 /* ContentView.swift */; };
+		99D2A78D2653A5C200AE2BE1 /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D2A78C2653A5C200AE2BE1 /* FirstView.swift */; };
 		99D2A78F2653A5C300AE2BE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99D2A78E2653A5C300AE2BE1 /* Assets.xcassets */; };
 		99D2A7922653A5C300AE2BE1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99D2A7912653A5C300AE2BE1 /* Preview Assets.xcassets */; };
+		99D2A7A2265BBA3900AE2BE1 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D2A7A1265BBA3900AE2BE1 /* SignUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		99D2A7872653A5C200AE2BE1 /* SoftManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoftManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99D2A78A2653A5C200AE2BE1 /* SoftManagementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftManagementApp.swift; sourceTree = "<group>"; };
-		99D2A78C2653A5C200AE2BE1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		99D2A78C2653A5C200AE2BE1 /* FirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
 		99D2A78E2653A5C300AE2BE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99D2A7912653A5C300AE2BE1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		99D2A7932653A5C300AE2BE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99D2A7A1265BBA3900AE2BE1 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +54,11 @@
 		99D2A7892653A5C200AE2BE1 /* SoftManagement */ = {
 			isa = PBXGroup;
 			children = (
+				99D2A79C265BB33400AE2BE1 /* Models */,
+				99D2A79B265BB32300AE2BE1 /* Repositories */,
+				99D2A79A265BB31900AE2BE1 /* ViewModels */,
+				99D2A799265BB30B00AE2BE1 /* Views */,
 				99D2A78A2653A5C200AE2BE1 /* SoftManagementApp.swift */,
-				99D2A78C2653A5C200AE2BE1 /* ContentView.swift */,
 				99D2A78E2653A5C300AE2BE1 /* Assets.xcassets */,
 				99D2A7932653A5C300AE2BE1 /* Info.plist */,
 				99D2A7902653A5C300AE2BE1 /* Preview Content */,
@@ -67,6 +72,36 @@
 				99D2A7912653A5C300AE2BE1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		99D2A799265BB30B00AE2BE1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				99D2A78C2653A5C200AE2BE1 /* FirstView.swift */,
+				99D2A7A1265BBA3900AE2BE1 /* SignUpView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		99D2A79A265BB31900AE2BE1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		99D2A79B265BB32300AE2BE1 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		99D2A79C265BB33400AE2BE1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +173,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99D2A78D2653A5C200AE2BE1 /* ContentView.swift in Sources */,
+				99D2A78D2653A5C200AE2BE1 /* FirstView.swift in Sources */,
+				99D2A7A2265BBA3900AE2BE1 /* SignUpView.swift in Sources */,
 				99D2A78B2653A5C200AE2BE1 /* SoftManagementApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
