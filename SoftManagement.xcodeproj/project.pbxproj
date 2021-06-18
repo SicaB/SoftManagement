@@ -7,21 +7,57 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9953A8842670EECB004AE7AC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9953A8832670EECB004AE7AC /* SignUpView.swift */; };
+		997AA0A7266EBCC00093EDBB /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997AA0A6266EBCC00093EDBB /* LogInViewModel.swift */; };
+		99A719A6267757BA009FF1D6 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A719A5267757BA009FF1D6 /* SignUpViewModel.swift */; };
+		99A719A82677675D009FF1D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99A719A72677675D009FF1D6 /* GoogleService-Info.plist */; };
+		99A719AA26778CB5009FF1D6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A719A926778CB5009FF1D6 /* User.swift */; };
+		99A719AD2678C47B009FF1D6 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A719AC2678C47B009FF1D6 /* String+Ext.swift */; };
+		99A719AF2678C633009FF1D6 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A719AE2678C633009FF1D6 /* Alert.swift */; };
+		99A719B12678D8F0009FF1D6 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A719B02678D8F0009FF1D6 /* Authentication.swift */; };
+		99A719B6267A0D09009FF1D6 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A719B5267A0D09009FF1D6 /* HomeScreenView.swift */; };
+		99A719B8267B409D009FF1D6 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A719B7267B409D009FF1D6 /* Project.swift */; };
+		99A719BA267B40AE009FF1D6 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A719B9267B40AE009FF1D6 /* Task.swift */; };
+		99A719BC267B44B7009FF1D6 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A719BB267B44B7009FF1D6 /* AccountView.swift */; };
+		99A719BE267B44D9009FF1D6 /* ProjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A719BD267B44D9009FF1D6 /* ProjectListView.swift */; };
+		99A719C0267B588D009FF1D6 /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A719BF267B588D009FF1D6 /* AppTabView.swift */; };
 		99D2A78B2653A5C200AE2BE1 /* SoftManagementApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D2A78A2653A5C200AE2BE1 /* SoftManagementApp.swift */; };
-		99D2A78D2653A5C200AE2BE1 /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D2A78C2653A5C200AE2BE1 /* FirstView.swift */; };
+		99D2A78D2653A5C200AE2BE1 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D2A78C2653A5C200AE2BE1 /* LogInView.swift */; };
 		99D2A78F2653A5C300AE2BE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99D2A78E2653A5C300AE2BE1 /* Assets.xcassets */; };
 		99D2A7922653A5C300AE2BE1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99D2A7912653A5C300AE2BE1 /* Preview Assets.xcassets */; };
-		99D2A7A2265BBA3900AE2BE1 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D2A7A1265BBA3900AE2BE1 /* SignUpView.swift */; };
+		99D2A7A7266E2A3000AE2BE1 /* SoftBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D2A7A6266E2A3000AE2BE1 /* SoftBtn.swift */; };
+		99D2A7A9266E3D2B00AE2BE1 /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D2A7A8266E3D2B00AE2BE1 /* Logo.swift */; };
+		99D2A7AB266E3D6300AE2BE1 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D2A7AA266E3D6300AE2BE1 /* Background.swift */; };
+		CD2B78B586EAA997AB6D455A /* Pods_SoftManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F419E5C57C0A96B911D2810 /* Pods_SoftManagement.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F419E5C57C0A96B911D2810 /* Pods_SoftManagement.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoftManagement.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9953A8832670EECB004AE7AC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		997AA0A6266EBCC00093EDBB /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
+		99A719A5267757BA009FF1D6 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		99A719A72677675D009FF1D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		99A719A926778CB5009FF1D6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		99A719AC2678C47B009FF1D6 /* String+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		99A719AE2678C633009FF1D6 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		99A719B02678D8F0009FF1D6 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		99A719B5267A0D09009FF1D6 /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
+		99A719B7267B409D009FF1D6 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		99A719B9267B40AE009FF1D6 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		99A719BB267B44B7009FF1D6 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		99A719BD267B44D9009FF1D6 /* ProjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListView.swift; sourceTree = "<group>"; };
+		99A719BF267B588D009FF1D6 /* AppTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
 		99D2A7872653A5C200AE2BE1 /* SoftManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoftManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99D2A78A2653A5C200AE2BE1 /* SoftManagementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftManagementApp.swift; sourceTree = "<group>"; };
-		99D2A78C2653A5C200AE2BE1 /* FirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
+		99D2A78C2653A5C200AE2BE1 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		99D2A78E2653A5C300AE2BE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99D2A7912653A5C300AE2BE1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		99D2A7932653A5C300AE2BE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		99D2A7A1265BBA3900AE2BE1 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		99D2A7A6266E2A3000AE2BE1 /* SoftBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftBtn.swift; sourceTree = "<group>"; };
+		99D2A7A8266E3D2B00AE2BE1 /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
+		99D2A7AA266E3D6300AE2BE1 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		AD780F04DEE825D5450190A2 /* Pods-SoftManagement.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoftManagement.debug.xcconfig"; path = "Target Support Files/Pods-SoftManagement/Pods-SoftManagement.debug.xcconfig"; sourceTree = "<group>"; };
+		E1A5EBFA0A293BC816CF0B15 /* Pods-SoftManagement.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoftManagement.release.xcconfig"; path = "Target Support Files/Pods-SoftManagement/Pods-SoftManagement.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +65,73 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD2B78B586EAA997AB6D455A /* Pods_SoftManagement.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9953A882266F5606004AE7AC /* Backgrounds and logo */ = {
+			isa = PBXGroup;
+			children = (
+				99D2A7AA266E3D6300AE2BE1 /* Background.swift */,
+				99D2A7A8266E3D2B00AE2BE1 /* Logo.swift */,
+			);
+			path = "Backgrounds and logo";
+			sourceTree = "<group>";
+		};
+		9953A8852670EED4004AE7AC /* SignUpView */ = {
+			isa = PBXGroup;
+			children = (
+				9953A8832670EECB004AE7AC /* SignUpView.swift */,
+				99A719A5267757BA009FF1D6 /* SignUpViewModel.swift */,
+			);
+			path = SignUpView;
+			sourceTree = "<group>";
+		};
+		997AA0A3266EAB5D0093EDBB /* Firebase Auth */ = {
+			isa = PBXGroup;
+			children = (
+				99A719A72677675D009FF1D6 /* GoogleService-Info.plist */,
+			);
+			path = "Firebase Auth";
+			sourceTree = "<group>";
+		};
+		99A719AB2678C083009FF1D6 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				99A719AE2678C633009FF1D6 /* Alert.swift */,
+				99A719AC2678C47B009FF1D6 /* String+Ext.swift */,
+				99A719B02678D8F0009FF1D6 /* Authentication.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		99A719B2267A0C02009FF1D6 /* HomeScreenView */ = {
+			isa = PBXGroup;
+			children = (
+				99A719B5267A0D09009FF1D6 /* HomeScreenView.swift */,
+			);
+			path = HomeScreenView;
+			sourceTree = "<group>";
+		};
+		99A719C3267CC01E009FF1D6 /* AppTabView */ = {
+			isa = PBXGroup;
+			children = (
+				99A719BF267B588D009FF1D6 /* AppTabView.swift */,
+			);
+			path = AppTabView;
+			sourceTree = "<group>";
+		};
 		99D2A77E2653A5C200AE2BE1 = {
 			isa = PBXGroup;
 			children = (
+				99D2A78A2653A5C200AE2BE1 /* SoftManagementApp.swift */,
 				99D2A7892653A5C200AE2BE1 /* SoftManagement */,
 				99D2A7882653A5C200AE2BE1 /* Products */,
+				AFDA4CD85936BD59720683B4 /* Pods */,
+				9A19244ED8AF4F7CAB76604C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,11 +146,10 @@
 		99D2A7892653A5C200AE2BE1 /* SoftManagement */ = {
 			isa = PBXGroup;
 			children = (
+				99A719AB2678C083009FF1D6 /* Utilities */,
+				99D2A7A5266E29DE00AE2BE1 /* UI Elements */,
 				99D2A79C265BB33400AE2BE1 /* Models */,
-				99D2A79B265BB32300AE2BE1 /* Repositories */,
-				99D2A79A265BB31900AE2BE1 /* ViewModels */,
-				99D2A799265BB30B00AE2BE1 /* Views */,
-				99D2A78A2653A5C200AE2BE1 /* SoftManagementApp.swift */,
+				99D2A799265BB30B00AE2BE1 /* Views and ViewModels */,
 				99D2A78E2653A5C300AE2BE1 /* Assets.xcassets */,
 				99D2A7932653A5C300AE2BE1 /* Info.plist */,
 				99D2A7902653A5C300AE2BE1 /* Preview Content */,
@@ -74,34 +165,71 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		99D2A799265BB30B00AE2BE1 /* Views */ = {
+		99D2A799265BB30B00AE2BE1 /* Views and ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				99D2A78C2653A5C200AE2BE1 /* FirstView.swift */,
-				99D2A7A1265BBA3900AE2BE1 /* SignUpView.swift */,
+				99D2A7A3266E170200AE2BE1 /* LogInView */,
+				9953A8852670EED4004AE7AC /* SignUpView */,
+				99A719B2267A0C02009FF1D6 /* HomeScreenView */,
+				99A719C3267CC01E009FF1D6 /* AppTabView */,
+				99A719BD267B44D9009FF1D6 /* ProjectListView.swift */,
+				99A719BB267B44B7009FF1D6 /* AccountView.swift */,
 			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		99D2A79A265BB31900AE2BE1 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		99D2A79B265BB32300AE2BE1 /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Repositories;
+			path = "Views and ViewModels";
 			sourceTree = "<group>";
 		};
 		99D2A79C265BB33400AE2BE1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				99A719A926778CB5009FF1D6 /* User.swift */,
+				99A719B7267B409D009FF1D6 /* Project.swift */,
+				99A719B9267B40AE009FF1D6 /* Task.swift */,
+				997AA0A3266EAB5D0093EDBB /* Firebase Auth */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		99D2A7A3266E170200AE2BE1 /* LogInView */ = {
+			isa = PBXGroup;
+			children = (
+				99D2A78C2653A5C200AE2BE1 /* LogInView.swift */,
+				997AA0A6266EBCC00093EDBB /* LogInViewModel.swift */,
+			);
+			path = LogInView;
+			sourceTree = "<group>";
+		};
+		99D2A7A5266E29DE00AE2BE1 /* UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				9953A882266F5606004AE7AC /* Backgrounds and logo */,
+				99D2A7AF266E49B900AE2BE1 /* Buttons */,
+			);
+			path = "UI Elements";
+			sourceTree = "<group>";
+		};
+		99D2A7AF266E49B900AE2BE1 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				99D2A7A6266E2A3000AE2BE1 /* SoftBtn.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		9A19244ED8AF4F7CAB76604C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2F419E5C57C0A96B911D2810 /* Pods_SoftManagement.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AFDA4CD85936BD59720683B4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AD780F04DEE825D5450190A2 /* Pods-SoftManagement.debug.xcconfig */,
+				E1A5EBFA0A293BC816CF0B15 /* Pods-SoftManagement.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -111,6 +239,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 99D2A7962653A5C300AE2BE1 /* Build configuration list for PBXNativeTarget "SoftManagement" */;
 			buildPhases = (
+				FA741EBF734F94B69BEFA0CF /* [CP] Check Pods Manifest.lock */,
 				99D2A7832653A5C200AE2BE1 /* Sources */,
 				99D2A7842653A5C200AE2BE1 /* Frameworks */,
 				99D2A7852653A5C200AE2BE1 /* Resources */,
@@ -162,20 +291,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				99D2A7922653A5C300AE2BE1 /* Preview Assets.xcassets in Resources */,
+				99A719A82677675D009FF1D6 /* GoogleService-Info.plist in Resources */,
 				99D2A78F2653A5C300AE2BE1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		FA741EBF734F94B69BEFA0CF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SoftManagement-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		99D2A7832653A5C200AE2BE1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99D2A78D2653A5C200AE2BE1 /* FirstView.swift in Sources */,
-				99D2A7A2265BBA3900AE2BE1 /* SignUpView.swift in Sources */,
+				99D2A7A7266E2A3000AE2BE1 /* SoftBtn.swift in Sources */,
+				99D2A7A9266E3D2B00AE2BE1 /* Logo.swift in Sources */,
+				99A719A6267757BA009FF1D6 /* SignUpViewModel.swift in Sources */,
+				99D2A78D2653A5C200AE2BE1 /* LogInView.swift in Sources */,
+				99A719BC267B44B7009FF1D6 /* AccountView.swift in Sources */,
+				99A719BE267B44D9009FF1D6 /* ProjectListView.swift in Sources */,
+				99A719B6267A0D09009FF1D6 /* HomeScreenView.swift in Sources */,
+				99A719B8267B409D009FF1D6 /* Project.swift in Sources */,
+				99A719B12678D8F0009FF1D6 /* Authentication.swift in Sources */,
+				99A719BA267B40AE009FF1D6 /* Task.swift in Sources */,
+				997AA0A7266EBCC00093EDBB /* LogInViewModel.swift in Sources */,
+				99A719AA26778CB5009FF1D6 /* User.swift in Sources */,
+				99A719C0267B588D009FF1D6 /* AppTabView.swift in Sources */,
+				9953A8842670EECB004AE7AC /* SignUpView.swift in Sources */,
 				99D2A78B2653A5C200AE2BE1 /* SoftManagementApp.swift in Sources */,
+				99A719AD2678C47B009FF1D6 /* String+Ext.swift in Sources */,
+				99D2A7AB266E3D6300AE2BE1 /* Background.swift in Sources */,
+				99A719AF2678C633009FF1D6 /* Alert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +470,7 @@
 		};
 		99D2A7972653A5C300AE2BE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD780F04DEE825D5450190A2 /* Pods-SoftManagement.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -322,6 +493,7 @@
 		};
 		99D2A7982653A5C300AE2BE1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1A5EBFA0A293BC816CF0B15 /* Pods-SoftManagement.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
