@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct User: Codable {
+struct User: Codable, Identifiable {
     var id: String = UUID().uuidString
     var name = ""
     var username = ""

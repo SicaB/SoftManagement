@@ -3,7 +3,7 @@
 //  SoftManagement
 //
 //  Created by Sacha Behrend on 15/06/2021.
-//
+ 
 
 import SwiftUI
 import FirebaseAuth
@@ -13,14 +13,15 @@ final class Authentication: ObservableObject {
     @Published var user = User()
     @Published var signedIn = false
     @Published var alertItem: AlertItem?
+
     
     let auth = Auth.auth()
+    
     var isSignedIn: Bool {
         return auth.currentUser != nil
     }
     
     func logIn(userEmail: String, userPassword: String) {
-        
         auth.signIn(withEmail: userEmail,
                     password: userPassword) { [weak self] (result,
                         error) in

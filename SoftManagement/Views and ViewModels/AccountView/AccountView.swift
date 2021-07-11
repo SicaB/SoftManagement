@@ -14,6 +14,7 @@ struct AccountView: View {
         VStack {
             
             Text("You are signed in")
+                
             Button {
                 authentication.logOut()
             }

@@ -41,7 +41,7 @@ struct SignUpView: View {
                     }
                 }
                     
-                }.navigationBarTitle("Sign Up", displayMode: .inline)
+                }.navigationBarTitle("Sign Up")
                 
             }
             .alert(item: $authentication.alertItem) { alertItem in

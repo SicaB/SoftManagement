@@ -13,23 +13,18 @@ struct LogInView: View {
     @StateObject var viewModel = LogInViewModel()
     @State var alertItem: AlertItem?
     
-    init() {
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
-        UINavigationBar.appearance().backgroundColor = UIColor(Color("lightblue"))
-     }
-    
     var body: some View {
-        NavigationView {
+        ZStack {
             if authentication.signedIn {
-                // TODO: Put in right screen...
-                AppTabView()
+                TabContainerView()
 
             }
             else {
                 LogInScreenView()
-                    .navigationBarHidden(true)
+                    
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .onAppear() {
             authentication.signedIn = authentication.isSignedIn
         }
@@ -45,10 +40,11 @@ struct LogInScreenView: View {
     var passwordPlaceholder = "Password"
     
     var body: some View {
-            
+        NavigationView{
             ZStack() {
                 BackgroundColor()
                 BackgroundImage(image: "signup")
+                    .navigationBarHidden(true)
                 
                 VStack(alignment: .center) {
                     Spacer().frame(height: 85)
@@ -136,14 +132,14 @@ struct LogInScreenView: View {
                     
                     Spacer()
                 }
-                
-                
-                
             }
             .alert(item: $authentication.alertItem) { alertItem in
                 Alert(title: Text(alertItem.title), message: Text(alertItem.message), dismissButton: alertItem.dismissButton)
+                    
                 
             }
+        }
+            
         
         }
     
