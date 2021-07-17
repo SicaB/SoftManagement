@@ -10,22 +10,23 @@ import FirebaseFirestoreSwift
 
 struct Project: Identifiable, Decodable {
     
-    
+    var docId: String = ""
     var id: String { name }
     var name: String = ""
     var startDate = Date()
     var deadLine = Date()
     var progressCount: Float = 0.0
    // var projectOwner = User()
-    var teams = [Team]()
+   // var teams = [Team]()
    // var teamMember = ""
     //var task = Task()
     
-    init(name: String, teams: [Team]) {
+    init(name: String, docId: String) {
         self.name = name
+        self.docId = docId
 //        self.startDate = Date()
 //        self.deadLine = Date()
-        self.teams = teams
+//        self.teams = teams
         
     }
     

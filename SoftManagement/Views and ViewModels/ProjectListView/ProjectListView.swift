@@ -62,6 +62,7 @@ struct ListOfProjectsView: View {
                     Button(action: {
                         withAnimation(.default) {
                             self.selectedName = name.name
+                            
                             isAnimated.toggle()
                             appInfo.saveSelectedProject(project: name)
                             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600), execute: {
@@ -89,6 +90,7 @@ struct ListOfProjectsView: View {
         }
         .navigationTitle("Projects")
         .navigationBarItems(trailing: Button(action: {
+            appInfo.activeSheet = .showProjectView
             appInfo.showSheetView.toggle()
                 }, label: {
                     Image(systemName: "plus.rectangle.on.folder")
@@ -121,6 +123,7 @@ struct ListOfProjectsView: View {
 //
         }
         .sheet(isPresented: $appInfo.showSheetView, content: {
+            if appInfo.activeSheet == .showProjectView {
             CreateProjectView(isPresented: $appInfo.showSheetView, didAddProject: {
                 project in
                 print("hello: listview sheet")
@@ -131,6 +134,7 @@ struct ListOfProjectsView: View {
 
             })
             .environmentObject(self.authentication)
+            }
 
         })
     }

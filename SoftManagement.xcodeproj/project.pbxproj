@@ -7,8 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		990785BC26A1820A00314E02 /* ProjectNameOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990785BB26A1820A00314E02 /* ProjectNameOverview.swift */; };
+		990785C026A1860B00314E02 /* TeamsHeadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990785BF26A1860B00314E02 /* TeamsHeadline.swift */; };
+		990785C426A1FB0200314E02 /* DisclosureList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990785C326A1FB0200314E02 /* DisclosureList.swift */; };
 		9953A8842670EECB004AE7AC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9953A8832670EECB004AE7AC /* SignUpView.swift */; };
+		99638A1A269ED9CF0037519B /* CreateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99638A19269ED9CF0037519B /* CreateTaskView.swift */; };
+		99638A1C269ED9E50037519B /* CreateTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99638A1B269ED9E50037519B /* CreateTaskViewModel.swift */; };
+		99638A1E269F78D30037519B /* PlusImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99638A1D269F78D20037519B /* PlusImage.swift */; };
+		99638A21269F7D2F0037519B /* TeamCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99638A20269F7D2F0037519B /* TeamCard.swift */; };
+		99638A2426A0135E0037519B /* TeamInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99638A2326A0135E0037519B /* TeamInfoView.swift */; };
+		99638A2626A013780037519B /* TeamInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99638A2526A013780037519B /* TeamInfoViewModel.swift */; };
 		99761324269B2F5900AF1AEB /* CreateTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99761323269B2F5900AF1AEB /* CreateTeamView.swift */; };
+		99761326269B2FFE00AF1AEB /* CreateTeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99761325269B2FFE00AF1AEB /* CreateTeamViewModel.swift */; };
 		997AA0A7266EBCC00093EDBB /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997AA0A6266EBCC00093EDBB /* LogInViewModel.swift */; };
 		99A719A6267757BA009FF1D6 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A719A5267757BA009FF1D6 /* SignUpViewModel.swift */; };
 		99A719A82677675D009FF1D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99A719A72677675D009FF1D6 /* GoogleService-Info.plist */; };
@@ -44,8 +54,18 @@
 
 /* Begin PBXFileReference section */
 		0E88880D39FA30F21E0AC110 /* Pods_SoftManagement.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoftManagement.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		990785BB26A1820A00314E02 /* ProjectNameOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNameOverview.swift; sourceTree = "<group>"; };
+		990785BF26A1860B00314E02 /* TeamsHeadline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsHeadline.swift; sourceTree = "<group>"; };
+		990785C326A1FB0200314E02 /* DisclosureList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureList.swift; sourceTree = "<group>"; };
 		9953A8832670EECB004AE7AC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		99638A19269ED9CF0037519B /* CreateTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskView.swift; sourceTree = "<group>"; };
+		99638A1B269ED9E50037519B /* CreateTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewModel.swift; sourceTree = "<group>"; };
+		99638A1D269F78D20037519B /* PlusImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusImage.swift; sourceTree = "<group>"; };
+		99638A20269F7D2F0037519B /* TeamCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCard.swift; sourceTree = "<group>"; };
+		99638A2326A0135E0037519B /* TeamInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoView.swift; sourceTree = "<group>"; };
+		99638A2526A013780037519B /* TeamInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoViewModel.swift; sourceTree = "<group>"; };
 		99761323269B2F5900AF1AEB /* CreateTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamView.swift; sourceTree = "<group>"; };
+		99761325269B2FFE00AF1AEB /* CreateTeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamViewModel.swift; sourceTree = "<group>"; };
 		997AA0A6266EBCC00093EDBB /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
 		99A719A5267757BA009FF1D6 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		99A719A72677675D009FF1D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -112,6 +132,42 @@
 			path = SignUpView;
 			sourceTree = "<group>";
 		};
+		99638A17269ED9700037519B /* CreateTeamView */ = {
+			isa = PBXGroup;
+			children = (
+				99761323269B2F5900AF1AEB /* CreateTeamView.swift */,
+				99761325269B2FFE00AF1AEB /* CreateTeamViewModel.swift */,
+			);
+			path = CreateTeamView;
+			sourceTree = "<group>";
+		};
+		99638A18269ED97B0037519B /* CreateTaskView */ = {
+			isa = PBXGroup;
+			children = (
+				99638A19269ED9CF0037519B /* CreateTaskView.swift */,
+				99638A1B269ED9E50037519B /* CreateTaskViewModel.swift */,
+			);
+			path = CreateTaskView;
+			sourceTree = "<group>";
+		};
+		99638A2226A012FD0037519B /* TeamInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				99638A2326A0135E0037519B /* TeamInfoView.swift */,
+				99638A2526A013780037519B /* TeamInfoViewModel.swift */,
+			);
+			path = TeamInfoView;
+			sourceTree = "<group>";
+		};
+		99761327269D774B00AF1AEB /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				99A719B02678D8F0009FF1D6 /* Authentication.swift */,
+				99E617E3269489DC00BE866B /* AppInformation.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
 		997AA0A3266EAB5D0093EDBB /* Firebase Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +225,7 @@
 		99D2A7892653A5C200AE2BE1 /* SoftManagement */ = {
 			isa = PBXGroup;
 			children = (
+				99761327269D774B00AF1AEB /* Global */,
 				99E617C826830A3800BE866B /* Repositories */,
 				99A719AB2678C083009FF1D6 /* Utilities */,
 				99D2A7A5266E29DE00AE2BE1 /* UI Elements */,
@@ -200,7 +257,9 @@
 				99E617D02684A8B200BE866B /* ProjectListView */,
 				99E617D42685C99F00BE866B /* CreateProjectView */,
 				99E617D12684A8D900BE866B /* AccountView */,
-				99761323269B2F5900AF1AEB /* CreateTeamView.swift */,
+				99638A17269ED9700037519B /* CreateTeamView */,
+				99638A18269ED97B0037519B /* CreateTaskView */,
+				99638A2226A012FD0037519B /* TeamInfoView */,
 			);
 			path = "Views and ViewModels";
 			sourceTree = "<group>";
@@ -232,6 +291,11 @@
 				9953A882266F5606004AE7AC /* Backgrounds and logo */,
 				99D2A7AF266E49B900AE2BE1 /* Buttons */,
 				99A719CE26808C85009FF1D6 /* ProgressBar.swift */,
+				99638A1D269F78D20037519B /* PlusImage.swift */,
+				99638A20269F7D2F0037519B /* TeamCard.swift */,
+				990785BB26A1820A00314E02 /* ProjectNameOverview.swift */,
+				990785BF26A1860B00314E02 /* TeamsHeadline.swift */,
+				990785C326A1FB0200314E02 /* DisclosureList.swift */,
 			);
 			path = "UI Elements";
 			sourceTree = "<group>";
@@ -248,8 +312,6 @@
 			isa = PBXGroup;
 			children = (
 				99E617CA26830AEC00BE866B /* ProjectRepository.swift */,
-				99A719B02678D8F0009FF1D6 /* Authentication.swift */,
-				99E617E3269489DC00BE866B /* AppInformation.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -418,27 +480,37 @@
 				99E617D32684A93400BE866B /* ProjectListViewModel.swift in Sources */,
 				99E617E22693241E00BE866B /* LoadingView.swift in Sources */,
 				99D2A78D2653A5C200AE2BE1 /* LogInView.swift in Sources */,
+				99638A1C269ED9E50037519B /* CreateTaskViewModel.swift in Sources */,
 				99A719BC267B44B7009FF1D6 /* AccountView.swift in Sources */,
 				99761324269B2F5900AF1AEB /* CreateTeamView.swift in Sources */,
+				99638A2426A0135E0037519B /* TeamInfoView.swift in Sources */,
 				99E617CF2684836C00BE866B /* TabContainerViewModel.swift in Sources */,
 				99A719BE267B44D9009FF1D6 /* ProjectListView.swift in Sources */,
 				99A719B6267A0D09009FF1D6 /* HomeScreenView.swift in Sources */,
 				99A719B8267B409D009FF1D6 /* Project.swift in Sources */,
 				99A719B12678D8F0009FF1D6 /* Authentication.swift in Sources */,
 				99E617D92685CFF200BE866B /* CreateProjectViewModel.swift in Sources */,
+				99638A2626A013780037519B /* TeamInfoViewModel.swift in Sources */,
 				99E617E4269489DD00BE866B /* AppInformation.swift in Sources */,
 				99A719BA267B40AE009FF1D6 /* Task.swift in Sources */,
+				990785C426A1FB0200314E02 /* DisclosureList.swift in Sources */,
 				997AA0A7266EBCC00093EDBB /* LogInViewModel.swift in Sources */,
 				99A719AA26778CB5009FF1D6 /* User.swift in Sources */,
 				99E617D62685C9CA00BE866B /* CreateProjectView.swift in Sources */,
 				99A719CF26808C85009FF1D6 /* ProgressBar.swift in Sources */,
 				99A719C0267B588D009FF1D6 /* TabContainerView.swift in Sources */,
 				99E617CB26830AEC00BE866B /* ProjectRepository.swift in Sources */,
+				99638A1A269ED9CF0037519B /* CreateTaskView.swift in Sources */,
 				9953A8842670EECB004AE7AC /* SignUpView.swift in Sources */,
 				99D2A78B2653A5C200AE2BE1 /* SoftManagementApp.swift in Sources */,
+				99761326269B2FFE00AF1AEB /* CreateTeamViewModel.swift in Sources */,
+				99638A21269F7D2F0037519B /* TeamCard.swift in Sources */,
+				990785BC26A1820A00314E02 /* ProjectNameOverview.swift in Sources */,
+				990785C026A1860B00314E02 /* TeamsHeadline.swift in Sources */,
 				99A719CB26806ADB009FF1D6 /* HomeScreenViewModel.swift in Sources */,
 				99A719AD2678C47B009FF1D6 /* String+Ext.swift in Sources */,
 				99D2A7AB266E3D6300AE2BE1 /* Background.swift in Sources */,
+				99638A1E269F78D30037519B /* PlusImage.swift in Sources */,
 				99A719AF2678C633009FF1D6 /* Alert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

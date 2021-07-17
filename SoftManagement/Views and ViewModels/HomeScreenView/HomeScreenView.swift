@@ -11,20 +11,17 @@ struct HomeScreenView: View {
 
     @StateObject var viewModel = HomeScreenViewModel()
     @EnvironmentObject var appInfo: AppInformation
-    
+    @EnvironmentObject var authentication: Authentication
     
     var body: some View {
         ZStack{
-            //BackgroundColor()
+            VStack(){
+            ProjectNameOverview()
             ScrollView{
                 
-                VStack(spacing: 4){
-                    
-                    ProjectNameView(viewModel: viewModel)
-                    
-                    StatusBarView(viewModel: viewModel)
-                    
-                    AddTeamView(viewModel: viewModel)
+                VStack(){
+
+                    TeamsHeadline()
                     
                     ListOfTeamsView(viewModel: viewModel)
                     
@@ -34,164 +31,40 @@ struct HomeScreenView: View {
 //                        ProjectTaskOverview(viewModel: viewModel)
 //                    }
 
-                    notificationOverview(viewModel: viewModel)
-                }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                   // notificationOverview(viewModel: viewModel)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
 
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
             }
             .navigationBarHidden(true)
                 
     }
-}
-    
-}
-
-
-struct ProjectNameView: View {
-    
-    @EnvironmentObject var appInfo: AppInformation
-    @ObservedObject var viewModel: HomeScreenViewModel
-    
-    var body: some View {
-        HStack(){
-            Text(appInfo.selectedProject.name)
-                .foregroundColor(Color.white)
-                .font(.title)
-              
-            
-        }.frame(maxWidth: .infinity, minHeight: 120, alignment: .center)
-        .background(Color("darkgray"))
-      //  .cornerRadius(5)
-        //.padding(.horizontal, 15)
-        .padding(.top, 10)
-        .padding(.bottom, -4)
-      //  .shadow(radius: 10)
-
-
-    }
-}
-
-struct StatusBarView: View {
-    
-    @EnvironmentObject var appInfo: AppInformation
-    @ObservedObject var viewModel: HomeScreenViewModel
-    
-    var body: some View {
-        VStack(){
-            HStack(){
-                Text("Done %")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Text("Planned %")
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                
-            }
-            .font(.footnote)
-            .padding(.horizontal)
-            .padding(.init(top: -2, leading: 10, bottom: -3, trailing: 10))
-            .foregroundColor(Color("blue"))
-           
-                
-            ProgressBar(value: appInfo.selectedProject.progressCount)
-                .frame(height: 30)
-                .padding(.horizontal, 15)
-
-        }.frame(maxWidth: .infinity, minHeight: 90, alignment: .center)
-        .background(Color.white)
-        .cornerRadius(5)
-        .padding(.horizontal, 5)
-        //.shadow(radius: 5)
-        .shadow(color: Color("shadowgray"), radius: 10)
-        
-    }
-}
-
-struct AddTeamView: View {
-    
-    @ObservedObject var viewModel: HomeScreenViewModel
-    
-    var body: some View {
-        
-    HStack(){
-        
-        Text("Teams")
-            .font(.title2)
-            .bold()
-            .padding(.top, 15)
-            .padding(.leading, 10)
-            .frame(maxWidth: .infinity, maxHeight: 60, alignment: .leading)
-        
-        Image(systemName: "plus.circle.fill")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 40, height: 40)
-            .padding()
-            .frame(maxWidth: .infinity, maxHeight: 60, alignment: .trailing)
-            .foregroundColor(Color("blue"))
-            .onTapGesture {
-               
-            }
-            
-            
-            
-    }
-//    .sheet(isPresented: $viewModel.showSheetView, content: {
-//        CreateProjectView(isPresented: $viewModel.showSheetView, didAddProject: {
-//            project in
-//            print("hello: listview sheet")
-////                viewModel.repository.projectsInDB = true
-////                appInfo.showPlanTab = true
-//            viewModel.getProjects()
-//            appInfo.anyProjectsInDB()
-//
-//        })
-        
-    }
-}
-    
-struct NoTeamsAddedView: View {
-    
-    @EnvironmentObject var appInfo: AppInformation
-    var body: some View {
-        VStack {
-                
-            Image(systemName: "person.3.fill")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 110, height: 110, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .foregroundColor(Color("lightgray"))
-                .padding(.bottom, 10)
-           
-            
-            Button {
-                    // add action
-                } label: {
-                    SoftBtn(title: "Create Team", textColor: .white, backgroundColor: Color("blue"), opacity: 0.8)
-                        
-                }
-            Spacer()
-
+        .background(Color("backgroundgray"))
+        .onAppear(){
+            viewModel.getTeams(projectDocId: appInfo.selectedProject.docId)
         }
-        .navigationBarHidden(true)
-        .frame(maxWidth: .infinity, minHeight: 90, alignment: .center)
-        .background(Color.white)
-        .cornerRadius(5)
-        .padding(.horizontal, 5)
-        .shadow(color: Color("shadowgray"), radius: 10)
-        }
-    }
+}
+    
+}
+
+
+
+
+
 
 struct ListOfTeamsView: View {
 
     @EnvironmentObject var appInfo: AppInformation
+    @EnvironmentObject var authentication: Authentication
     @ObservedObject var viewModel: HomeScreenViewModel
-    @State private var isExpanded = false
+    @State private var action: Int? = 0
+    @State private var tasksItems = [Task]()
+ 
     
-    let childItems = [TeamMockData.teams]
-//    let titles = [TaskMockData.eksample1.team, TaskMockData.eksample2.team, TaskMockData.eksample3.team, TaskMockData.eksample4.team]
-    
-    var projects: [Project] = []
-    
-//    var items: [Team] = [.exampleTeam1, .exampleTeam2, .exampleTeam3, .exampleTeam4, .exampleTeam5]
+
 //    List(MockData.projects) { project in
 //            Text(project.name)
 //        }
@@ -202,73 +75,131 @@ struct ListOfTeamsView: View {
     
     var body: some View{
         VStack(){
-//                Image(systemName: "person.3.fill")
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                    .frame(width: 50, height: 30)
-//                    .padding(.leading, 5)
-//                    .foregroundColor(Color("lightgray"))
-               
-
-
+            NavigationLink(
+                destination: CreateTaskView(), tag: 1, selection: $action){
                 
-                List {
-                    ForEach(appInfo.selectedProject.teams) { team in
+            }
+
+            ForEach(viewModel.teams) { team in
+                DisclosureGroup(
+                    content: {
+                            
+                       
+                            DisclosureList(viewModel: viewModel, team: team)
+                            
+                        
+  
+                }, label: {
                         Button(action: {
-//                        Image(systemName: row.icon)
-//                            .resizable()
-//                            .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-//                            .frame(width: 30, height: 30, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-//                            .cornerRadius(8)
-//                            .foregroundColor(.gray)
-//                        VStack(alignment: .leading){
-                        }) {
-                            
-                        Text(team.name)
-                            .font(.title2)
-                            
-//                        ProgressBar(value: 0.1)
-//                            .frame(height: 20)
-//                            .padding(.horizontal, 15)
-                        }
+                            self.appInfo.selectedTeam = team
+                            self.action = 1
+  
+                        }, label: {
+                            TeamCard(title: team.name)
+                        })
                     }
+                )
+                .frame(maxWidth: .infinity, minHeight: 60)
+                .padding()
+                .background(Color.white)
+                .cornerRadius(25)
+                .shadow(color: Color("shadowgray"), radius: 10)
+            }
+      
+            }
+            .padding()
+            //.frame(maxWidth: .infinity, minHeight: 330, maxHeight: .infinity)
+            //.background(Color.white)
+            //.frame(alignment: .top)
+            //.cornerRadius(5)
+            //.padding(.horizontal, 10)
+            //.shadow(color: Color("shadowgray"), radius: 10)
+            .onAppear(){
+            viewModel.selectedProjectId = appInfo.selectedProject.docId
+            viewModel.getTeams(projectDocId: appInfo.selectedProject.docId)
+                print("from onappear in taskview: \(viewModel.teams)")
+                for team in viewModel.teams  {
+                    print("from onappear in taskview: \(team)")
                 }
-                .environment(\.defaultMinListRowHeight, 80)
-                
-              
-            }
-            .frame(maxWidth: .infinity, minHeight: 330, maxHeight: .infinity)
-            .background(Color.white)
-            .cornerRadius(5)
-            .padding(.horizontal, 5)
-            .shadow(color: Color("shadowgray"), radius: 10)
+           
+            appInfo.teams = viewModel.teams
+        }
         
     }
     
 }
 
 
-struct notificationOverview: View {
-    
-    @ObservedObject var viewModel: HomeScreenViewModel
-    
-    var body: some View{
-        HStack(){
-            VStack(){
-                Text("Notifications")
-            }
-            
-        }.frame(maxWidth: .infinity, minHeight: 300, alignment: .center)
-        .background(Color.white)
-        .cornerRadius(5)
-        .padding(.horizontal, 5)
-        .shadow(color: Color("shadowgray"), radius: 10)
-        
-    }
-}
+//struct AddTeamView: View {
+//
+//    @EnvironmentObject var appInfo: AppInformation
+//    @EnvironmentObject var authentication: Authentication
+//    @ObservedObject var viewModel: HomeScreenViewModel
+//
+//    var body: some View {
+//
+//        Button(action: {
+//            appInfo.activeSheet = .showTeamView
+//            appInfo.showSheetView.toggle()
+//        }, label: {
+//            HStack(){
+//
+//            PlusImage()
+//                .padding(5)
+//
+//            Text("Create New Team")
+//                .font(.title2)
+//                .bold()
+//                .frame(maxWidth: .infinity, alignment: .leading)
+//                .padding(.leading, 10)
+//                .foregroundColor(Color("lightgray"))
+//
+//
+//
+//        }
+//         .frame(maxWidth: .infinity, minHeight: 40)
+//         .padding()
+//         .sheet(isPresented: $appInfo.showSheetView, content: {
+//            if appInfo.activeSheet == .showTeamView {
+//                CreateTeamView(isPresented: $appInfo.showSheetView, didAddTeam: {
+//                    team in
+//                    print("hello: team sheet")
+//
+//                    viewModel.getTeams(projectDocId: appInfo.selectedProject.docId)
+//                    appInfo.anyProjectsInDB()
+//                    appInfo.teams = viewModel.teams
+//
+//                })
+//                .environmentObject(self.authentication)
+//            }
+//
+//        })
+//        .navigationBarHidden(true)
+//        })
+//
+//    }
+//}
 
 
-
+//struct notificationOverview: View {
+//
+//    @ObservedObject var viewModel: HomeScreenViewModel
+//    @EnvironmentObject var authentication: Authentication
+//
+//    var body: some View{
+//        HStack(){
+//            VStack(){
+//                Text("Notifications")
+//            }
+//
+//        }.frame(maxWidth: .infinity, minHeight: 300, alignment: .center)
+//        .background(Color.white)
+//        .cornerRadius(5)
+//        .padding(.horizontal, 5)
+//        .shadow(color: Color("shadowgray"), radius: 10)
+//
+//    }
+//}
 
 
 
@@ -276,19 +207,8 @@ struct HomeScreenView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView{
-
-//            projectOverView(viewModel: HomeScreenViewModel())
-//                .environmentObject(AppInformation())
-//            ProjectStatusBar(viewModel: HomeScreenViewModel())
-//                .environmentObject(AppInformation())
-//            ListOfTeamsView(viewModel: HomeScreenViewModel())
-//                .environmentObject(AppInformation())
-            AddTeamView(viewModel: HomeScreenViewModel())
+            HomeScreenView()
                 .environmentObject(AppInformation())
-            NoTeamsAddedView()
-                .environmentObject(AppInformation())
-//            HomeScreenView()
-//                .environmentObject(AppInformation())
                 //.preferredColorScheme(.dark)
         }
         

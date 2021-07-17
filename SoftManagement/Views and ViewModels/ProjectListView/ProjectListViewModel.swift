@@ -36,11 +36,11 @@ class ProjectListViewModel: ObservableObject {
                     self.repository.getAllProjects(completion: { (projects, docIDs) in
                         self.allProjects.removeAll()
                         self.allProjects.append(contentsOf: projects)
-                        //print("hello: content of array: \(self.allProjects)")
+                   
                         print("getProject Called")
                         self.projectDocIds.removeAll()
                         self.projectDocIds.append(contentsOf: docIDs)
-                       // self.repository.dbHasBeenChecked = true
+                      
                         self.repository.isLoading = false
                        
 
