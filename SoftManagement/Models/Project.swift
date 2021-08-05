@@ -8,7 +8,7 @@
 import SwiftUI
 import FirebaseFirestoreSwift
 
-struct Project: Identifiable, Decodable {
+struct Project: Identifiable, Codable {
     
     var docId: String = ""
     var id: String { name }
@@ -21,9 +21,10 @@ struct Project: Identifiable, Decodable {
    // var teamMember = ""
     //var task = Task()
     
-    init(name: String, docId: String) {
+    init(name: String, docId: String, progressCount: Float) {
         self.name = name
         self.docId = docId
+        self.progressCount = progressCount
 //        self.startDate = Date()
 //        self.deadLine = Date()
 //        self.teams = teams

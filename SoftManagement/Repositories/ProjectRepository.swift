@@ -14,34 +14,13 @@ import Combine
 class ProjectRepository {
    
     private let db = Firestore.firestore()
-    @Published var isLoading = true
-    //@Published var dbHasBeenChecked = false
- 
-    let group = DispatchGroup()
-    
-    
-//    func get() {
-//        db.collection("Projects").addSnapshotListener { (snapshot, error) in
-//            if let error = error {
-//                print(error)
-//                return
-//            }
-//            self.projects = snapshot?.documents.compactMap {
-//                try? $0.data(as: Project.self)
-//
-//            } ?? []
-//
-//        }
-//    }
-    
-//    func addProject(input: Project) {
-//        do {
-//            let _ = try db.collection("Projects").addDocument(from: input)
-//        }
-//        catch {
-//            print("error")
-//        }
-//    }
+    @Published var isLoading = true {
+        didSet {
+            print("is loading is now: \(isLoading)")
+        }
+    }
+        
+
     
     func saveProject(input: Project) {
         isLoading = true
@@ -52,9 +31,7 @@ class ProjectRepository {
                 "name": input.name,
                 "startDate": input.startDate,
                 "deadLine": input.deadLine,
-             //   "projectOwner": input.projectOwner,
-              //  "teamMember": input.teamMember,
-
+                "progressCount": input.progressCount,
                 "created": Firebase.Timestamp.init(date: Date())
             ], merge: true)  { err in
                     self.isLoading = false
@@ -64,18 +41,20 @@ class ProjectRepository {
                         print("Debug: Project succesfully created")
                     }
                 }
-
         }
     }
     
-    
     func saveTeamToProject(input: Team, docId: String) {
         DispatchQueue.main.async {
+            self.isLoading = true
         let ref = self.db.collection("Projects").document(docId)
         ref.collection("Teams").document().setData([
             "id": input.id,
             "name": input.name,
-            "tasks": input.tasks,
+            "teamWorkloadInHours": input.teamWorkloadInHours,
+            "hoursOfDoneWork": input.hoursOfDoneWork,
+            "workDonePercentage": input.workDonePercentage,
+            "tasks": [],
             "created": Firebase.Timestamp.init(date: Date())
         
         ], merge: true) { err in
@@ -88,29 +67,44 @@ class ProjectRepository {
         }
     }
     }
-    
 
-    
     func saveTask(input: Task, teamDocId: String, projectDocId: String) {
         DispatchQueue.main.async {
+            self.isLoading = true
+            var newPercentOfDoneWork: Float = 0.0
+            var newWorkload: Int = 0
             let ref = self.db.collection("Projects").document(projectDocId).collection("Teams").document(teamDocId)
                     ref.getDocument { (document, error) in
                         if let document = document, document.exists {
-                                ref.updateData([
-                                    "tasks": FieldValue.arrayUnion([input.title])
-                                ])
-                                    print("Task has been saved to project!")
-                                }
-                                else  {
-                                    print("Could not save Task to project!")
+                            
+                            let teamWorkloadInHours = document.get("teamWorkloadInHours") as? Int ?? 0
+                            newWorkload = teamWorkloadInHours+input.workLoad
+
+                            let hoursOfDoneWork = document.get("hoursOfDoneWork") as? Int ?? 0
+                            
+                            newPercentOfDoneWork = Float(hoursOfDoneWork)/Float(newWorkload)
+                            
+                            
+                            ref.updateData([
+                                "teamWorkloadInHours": newWorkload,
+                                "workDonePercentage": newPercentOfDoneWork,
+                                "tasks": FieldValue.arrayUnion([input.title])
+                            ])
+                            self.isLoading = false
+                            print("task title has been saved in team tasktitle array!")
+                                
+                        }
+                            else  {
+                                    print("Could not save Task in team tasktitle array!")
                                 }
                             }
       
+            
             ref.collection("Tasks").document().setData([
             "id": input.id,
             "title": input.title,
             "description": input.description,
-         //   "workLoad": input.workLoad,
+            "workLoad": input.workLoad,
             "created": Firebase.Timestamp.init(date: Date())
         
         ], merge: true) { err in
@@ -122,12 +116,44 @@ class ProjectRepository {
             }
         }
     }
-    }
+        
+ }
     
+    func getSelectedTeam(teamDocId: String, projectDocId: String, completion: @escaping (Team) -> Void) {
+        DispatchQueue.main.async {
+            self.isLoading = true
+            let ref = self.db.collection("Projects").document(projectDocId).collection("Teams").document(teamDocId)
+            
+            
+            
+            ref.getDocument { (document, error) in
+                if let document = document, document.exists {
+                   
+               //     let data = document.data()
+                    let docId = document.documentID
+                    let name = document.get("name") as? String ?? ""
+                    let tasks = document.get("tasks") as? [String] ?? []
+//                    let tasks = data?.compactMap {DocumentSnapshot -> Task? in return try? document.data(as: Task.self)} ?? []
+                    let teamWorkloadInHours = document.get("teamWorkloadInHours") as? Int ?? 0
+                    let hoursOfDoneWork = document.get("hoursOfDoneWork") as? Int ?? 0
+                    let workDonePercentage = document.get("workDonePercentage") as? Float ?? 0.0
+                    
+                    
+                    self.isLoading = false
+                    let teamInfo = Team(name: name, docId: docId, tasks: tasks, teamWorkloadInHours: teamWorkloadInHours, hoursOfDoneWork: hoursOfDoneWork, workDonePercentage: workDonePercentage)
+
+                    
+                    completion(teamInfo)
+                    
+                }
+            }
+        }
+    }
     
     func getAllProjects(completion: @escaping ([Project], [String]) -> Void) {
         
         DispatchQueue.main.async {
+            self.isLoading = true
             let collectionRef = self.db.collection("Projects").order(by: "created", descending: true)
             
             var projects = [Project]()
@@ -146,12 +172,15 @@ class ProjectRepository {
                         let data = document.data()
                         let docId = document.documentID
                         let names = data["name"] as? String ?? ""
-                       // let teams = data["teams"] as? [Team] ?? []
+                        let progressCount = data["progressCount"] as? Float ?? 0.0
                         
-                        let projectsDB = Project(name: names, docId: docId)
+                        self.isLoading = false
+                        let projectsDB = Project(name: names, docId: docId, progressCount: progressCount)
                         projects.append(projectsDB)
                         documentID.append(docId)
+                        
                     }
+                    self.isLoading = false
                     completion(projects, documentID)
                 
                 }
@@ -159,9 +188,38 @@ class ProjectRepository {
         }
 
     }
+    
+//    func getTeamsNEW(projectDocId: String, completion: @escaping ([Team]) -> Void) {
+//        DispatchQueue.main.async {
+//            let collectionRef = self.db.collection("Projects").document(projectDocId).collection("Teams").order(by: "created", descending: true)
+//
+//            var teams = [Team]()
+//
+//            collectionRef.getDocuments { (snapshot, err) in
+//                if let err = err {
+//                    print("Error getting document: \(err.localizedDescription)")
+//
+//                } else {
+//                    let teamsDB: [Team] = snapshot?.documents.compactMap {
+//                        return try? $0.data(as: Team.self)
+//                    } ?? [Team]()
+//
+//                    teams = teamsDB
+//                    completion(teams)
+//                    }
+//
+//                print("WHat is this: \(teams.description)")
+//
+//
+//
+//            }
+//        }
+//    }
+    
 
     func getTeams(projectDocId: String, completion: @escaping ([Team], [String]) -> Void) {
         DispatchQueue.main.async {
+            self.isLoading = true
             let collectionRef = self.db.collection("Projects").document(projectDocId).collection("Teams").order(by: "created", descending: true)
             
             var teams = [Team]()
@@ -180,10 +238,13 @@ class ProjectRepository {
                         let data = document.data()
                         let docId = document.documentID
                         let names = data["name"] as? String ?? ""
-                        let tasks = data["tasks"] as? [String] ?? []
-                    
+                        let tasks = document.get("tasks") as? [String] ?? []
+                        let teamWorkloadInHours = data["teamWorkloadInHours"] as? Int ?? 0
+                        let hoursOfDoneWork = data["hoursOfDoneWork"] as? Int ?? 0
+                        let workDonePercentage = data["workDonePercentage"] as? Float ?? 0.0
                         
-                        let teamsDB = Team(name: names, docId: docId, tasks: tasks)
+                        self.isLoading = false
+                        let teamsDB = Team(name: names, docId: docId, tasks: tasks, teamWorkloadInHours: teamWorkloadInHours, hoursOfDoneWork: hoursOfDoneWork, workDonePercentage: workDonePercentage)
                         
                         teams.append(teamsDB)
                         documentID.append(docId)
@@ -191,16 +252,19 @@ class ProjectRepository {
                         print("From repo1: \(names)")
                        
                     }
+                    self.isLoading = false
                     completion(teams, documentID)
                 
                 }
             }
         }
+        
     }
     
     func getTasks(projectDocId: String, teamDocId: String, completion: @escaping ([Task], [String]) -> Void) {
         DispatchQueue.main.async {
-            let collectionRef = self.db.collection("Projects").document(projectDocId).collection("Teams").document(teamDocId).collection("Tasks")
+            print("repo get tasks: projectdocid is: \(projectDocId) and teamdocid is: \(teamDocId)")
+            let collectionRef = self.db.collection("Projects").document(projectDocId).collection("Teams").document(teamDocId).collection("Tasks").order(by: "created", descending: true)
             
             var tasks = [Task]()
             var documentID = [String]()
@@ -219,13 +283,15 @@ class ProjectRepository {
                         let docId = document.documentID
                         let titles = data["title"] as? String ?? ""
                         let descriptions = data["description"] as? String ?? ""
-                        // let workLoads = data["workLoad"] as? String ?? ""
+                        let workLoads = data["workLoad"] as? Int ?? 0
+                        let isDone = data["isDone"] as? Bool ?? false
                         
-                        let tasksDB = Task(docId: docId, title: titles, description: descriptions)
+                        let tasksDB = Task(docId: docId, title: titles, description: descriptions, workLoad: workLoads, isDone: isDone)
                         tasks.append(tasksDB)
                         documentID.append(docId)
-                        print("tasks in db: \(tasksDB)")
+                        
                     }
+                    
                     completion(tasks, documentID)
                 
                 }
@@ -233,35 +299,73 @@ class ProjectRepository {
         }
     }
     
+    func updateProjectData(input: Project, projectDocId: String) {
+        self.isLoading = true
+        let ref = self.db.collection("Projects").document(projectDocId)
+        
+        ref.getDocument { (document, error) in
+            if let document = document, document.exists {
+                ref.updateData([
+                    "name": input.name,
+                    "startDate": input.startDate,
+                    "deadLine": input.deadLine,
+                    "progressCount": input.progressCount
+                
+                ])
+                self.isLoading = false
+                print("Project has been updated")
+            } else {
+                print("Could not update the Project")
+        }
+      }
+        
+    }
     
+    func updateTeamData(team: Team, projectDocId: String) {
+        //self.isLoading = true
+        let ref = self.db.collection("Projects").document(projectDocId).collection("Teams").document(team.docId)
+        
+        ref.getDocument { (document, error) in
+            if let document = document, document.exists {
+                ref.updateData([
+                 //   "name": team.name,
+                //    "teamWorkloadInHours": team.teamWorkloadInHours,
+                    "hoursOfDoneWork": team.hoursOfDoneWork,
+                    "workDonePercentage": team.workDonePercentage,
+                   // "tasks": team.tasks
+                
+                ])
+              //  self.isLoading = false
+                print("Team has been updated")
+            } else {
+                print("Could not update the team")
+        }
+      }
+        
+    }
+    
+    func updateTaskData(task: Task, teamDocId: String, projectDocId: String) {
+        //self.isLoading = true
+        let ref = self.db.collection("Projects").document(projectDocId).collection("Teams").document(teamDocId).collection("Tasks").document(task.docId)
+        
+        ref.getDocument { (document, error) in
+            if let document = document, document.exists {
+                ref.updateData([
+                    "id": task.id,
+                    "title": task.title,
+                    "description": task.description,
+                    "workLoad": task.workLoad,
+                    "isDone": task.isDone
+                
+                ])
+                //self.isLoading = false
+                print("Task has been updated")
+            } else {
+                print("Could not update the task")
+        }
 
-//    func getProjects(completion: @escaping ([String], [String]) -> Void) {
-//        let collectionRef = db.collection("Projects").order(by: "created", descending: true)
-//
-//        var titles = [String]()
-//        var documentID = [String]()
-//
-//        collectionRef.getDocuments  { (snapshot, err) in
-//            if let err = err {
-//                print("Error getting document: \(err.localizedDescription)")
-//            } else {
-//
-//                guard let snap = snapshot else { return }
-//                for document in snap.documents {
-//
-//                    let data = document.data()
-//                    let names = data["name"] as? String ?? ""
-//                    let docID = document.documentID
-//
-//                    let projectTitles = Project(name: names)
-//                    titles.append(String(projectTitles.name))
-//
-//                    documentID.append(docID)
-//                }
-//                completion(titles, documentID)
-//            }
-//        }
-//    }
+    }
+    }
     
     func anyProjectsInDatabase(completion: @escaping (Bool) -> Void) {
         //isLoading = true
@@ -278,28 +382,11 @@ class ProjectRepository {
                 }
         }
     }
-    
-//    func anyTeamsInDatabase(completion: @escaping (Bool) -> Void) {
-//        DispatchQueue.main.async {
-//            let collectionRef = self.db.collection("Projects")
-//
-//                collectionRef.getDocuments  { (snapshot, err) in
-//                    //self.isLoading = false
-//                        if snapshot!.documents.count > 0 {
-//                            completion(true)
-//                        } else {
-//                            completion(false)
-//                        }
-//                }
-//        }
-//    }
 
-    
     func deleteProject(at indexSet: IndexSet, docIds: [String]){
-        
+        self.isLoading = true
         indexSet.forEach { index in
             let projectToDelete = docIds[index]
-            
             DispatchQueue.main.async {
                 self.db.collection("Projects").document(projectToDelete).delete() { error in
                     
@@ -307,24 +394,17 @@ class ProjectRepository {
                         print(error.localizedDescription)
                     } else {
                         print("Debug: project deleted")
-                        
                     }
-                    
                 }
-                
                 self.isLoading = false
             }
         }
-        //self.isLoading = false
     }
     
-    func deleteTeam(at indexSet: IndexSet, projectDocId: String, teamDocIds: [String]){
-        
-        indexSet.forEach { index in
-            let teamToDelete = teamDocIds[index]
-            
+    func deleteTeam(projectDocId: String, teamDocId: String){
+        self.isLoading = true
             DispatchQueue.main.async {
-                self.db.collection("Projects").document(projectDocId).collection("Teams").document(teamToDelete).delete() { error in
+                self.db.collection("Projects").document(projectDocId).collection("Teams").document(teamDocId).delete() { error in
                     
                     if let error = error {
                         print(error.localizedDescription)
@@ -337,44 +417,67 @@ class ProjectRepository {
                 
                 self.isLoading = false
             }
-        }
+        
         //self.isLoading = false
     }
     
-    func deleteTask(projectDocId: String, task: Task){
+    func deleteTask(projectDocId: String, teamDocId: String, task: Task){
+        self.isLoading = true
+        var newPercentOfDoneWork: Float = 0.0
+        var newHoursOfDoneWork: Int = 0
+        var newWorkload: Int = 0
         
-//        indexSet.forEach { index in
-//            let teamToDelete = teamDocId[index]
-            
-            let taskData: [String: Any] =
-            [
-                "id" : task.id as Any,
-                "description" : task.description
-            ]
-
-        // TODO Make it work!
             DispatchQueue.main.async {
-                self.db.collection("Projects").document(projectDocId).updateData([
-                    "teams" : FieldValue.arrayRemove([taskData])
+                let ref = self.db.collection("Projects").document(projectDocId).collection("Teams").document(teamDocId)
                 
-                ]) { error in
+                    ref.collection("Tasks").document(task.docId).delete() { error in
+                    
                     if let error = error {
-                        print("Unable to delete team: \(error.localizedDescription)")
-                    }  else {
-                        print("Successfully deleted team")
+                        print(error.localizedDescription)
+                    } else {
+                        print("Debug: task deleted")
+                        
+                        ref.getDocument { (document, error) in
+                            if let document = document, document.exists {
+                                
+                                let teamWorkloadInHours = document.get("teamWorkloadInHours") as? Int ?? 0
+                                newWorkload = teamWorkloadInHours-task.workLoad
+
+                                let hoursOfDoneWork = document.get("hoursOfDoneWork") as? Int ?? 0
+                                
+                                if task.isDone {
+                                    let doneWork = hoursOfDoneWork - task.workLoad
+                                    newHoursOfDoneWork = doneWork
+                                    newPercentOfDoneWork = Float(newHoursOfDoneWork)/Float(newWorkload)
+                                } else {
+                                    newHoursOfDoneWork = hoursOfDoneWork
+                                    newPercentOfDoneWork = Float(hoursOfDoneWork)/Float(newWorkload)
+                                }
+                                
+
+                                ref.updateData([
+                                    "teamWorkloadInHours": newWorkload,
+                                    "hoursOfDoneWork": newHoursOfDoneWork,
+                                    "workDonePercentage": newPercentOfDoneWork,
+                                    "tasks" : FieldValue.arrayRemove([task.title])
+                                ])
+                                
+                                
+                                print("task title has been removed in team tasktitle array!")
+                                    
+                            }
+                                else  {
+                                        print("Could not delete Task in team tasktitle array!")
+                                    }
+                            
+                        }
+                        
                     }
                 }
-            
+                self.isLoading = false
             }
 
-            self.isLoading = false
-        }
-        //self.isLoading = false
-    
-    
-    
-    
+
+    }
+
 }
-
-
-

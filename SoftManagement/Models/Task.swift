@@ -8,19 +8,20 @@
 import SwiftUI
 
 struct Task: Codable, Hashable, Identifiable {
-    var id: String { title }
+    var id = UUID().uuidString
     var docId: String = ""
     var title: String = ""
     var description = ""
     var workLoad = 0
+    var isDone = false
     
-    init(docId: String, title: String, description: String) {
+    init(docId: String, title: String, description: String, workLoad: Int, isDone: Bool) {
         self.docId = docId
         self.title = title
         self.description = description
-       // self.workLoad = workLoad
+        self.workLoad = workLoad
+        self.isDone = isDone
 
-    //var teamMember = ""
     }
 }
 

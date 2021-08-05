@@ -12,17 +12,26 @@ struct AccountView: View {
     
     var body: some View {
         VStack {
-            
-            Text("You are signed in")
-                
-            Button {
-                authentication.logOut()
+            VStack{
+                Text("You are signed in")
+                    .foregroundColor(Color("h1"))
+                    
+                Button {
+                    authentication.logOut()
+                }
+                label: {
+                    SoftBtn(title: "Sign Out", textColor: .white, backgroundColor: Color("teamcolor1"), opacity: 0.8)
+                    
+                }.padding()
             }
-            label: {
-                SoftBtn(title: "Sign Out", textColor: .white, backgroundColor: Color("blue"), opacity: 0.8)
-                
-            }.padding()
+            
+ 
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color("backgroundgray"))
+        .ignoresSafeArea(edges: .top)
+        .navigationViewStyle(StackNavigationViewStyle())
+        
     }
 }
 

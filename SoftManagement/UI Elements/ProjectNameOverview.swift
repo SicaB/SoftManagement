@@ -40,14 +40,14 @@ struct ProjectNameOverview: View {
 
             }
             .frame(maxWidth: .infinity, minHeight: 90, alignment: .bottom)
-            .background(Color("darkgray"))
+            .background(Color("header"))
             .padding(.bottom, 20)
            
              
             
         }
-        .frame(maxWidth: .infinity, maxHeight: 220)
-        .background(Color("darkgray"))
+        .frame(maxWidth: .infinity, maxHeight: 240)
+        .background(Color("header"))
       //  .cornerRadius(5)
         //.padding(.horizontal, 15)
         

@@ -33,10 +33,26 @@ struct AlertContext {
                                     message: "Wrong Email or password", dismissButton: .default(Text("OK")))
     
     static let invalidEmailEnteredForReset = AlertItem(title: "Invalid Email",
-                                        message: "We could not find the email in the database. Please make sure the email is correct!", dismissButton: .default(Text("OK")))
+                                        message: "We could not find the email in the database. Please make sure the email is correct!", dismissButton:
+                                            .default(Text("OK")))
     
     static let resetPasswordEmailSent = AlertItem(title: "Email has been sent",
                                         message: "You can now reset your password!", dismissButton: .default(Text("OK")))
+    
+    static let invalidProjectName = AlertItem(title: "No Project Name",
+                                        message: "Your project must have a name!", dismissButton: .default(Text("OK")))
+    
+    static let invalidTimeline = AlertItem(title: "Invalid Timeline",
+                                        message: "Your project can not have a deadline before project start date. Make sure the dates are correct!", dismissButton: .default(Text("OK")))
+    
+    static let invalidTeamName = AlertItem(title: "No Team Name",
+                                        message: "Your team must have a name!", dismissButton: .default(Text("OK")))
+    
+    static let invalidTaskName = AlertItem(title: "No Task Name",
+                                        message: "Your task must have a name!", dismissButton: .default(Text("OK")))
+
+    static let invalidTaskWorkload = AlertItem(title: "No Workload",
+                                        message: "Enter the estimated number of hours or days the task will take!", dismissButton: .default(Text("OK")))
     
     
 }

@@ -37,13 +37,15 @@ struct CreateTeamView: View {
                         Section(header: Text("")){
                             // NavigationLink(destination: HomeScreenView()){
                             Button {
-                                    
-                                viewModel.saveTeam(input: viewModel.team, docId: appInfo.selectedProject.docId)
+                                if viewModel.team.name.isEmpty{
+                                    authentication.alertItem = AlertContext.invalidTeamName
+                                } else {
+                                    viewModel.saveTeam(input: viewModel.team, docId: appInfo.selectedProject.docId)
 
-                                isPresented.toggle()
-                                self.didAddTeam(.init(true))
-                                
-                                
+                                    isPresented.toggle()
+                                    self.didAddTeam(.init(true))
+                                }
+
                             } label: {
                                 Text("Done")
                                 
@@ -58,6 +60,7 @@ struct CreateTeamView: View {
                 
             }
             .navigationBarTitle("Create Team")
+            .background(Color("h2"))
             .alert(item: $authentication.alertItem) { alertItem in
                 Alert(title: Text(alertItem.title), message: Text(alertItem.message), dismissButton: alertItem.dismissButton)
             }

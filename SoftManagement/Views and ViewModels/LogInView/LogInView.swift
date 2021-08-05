@@ -42,7 +42,7 @@ struct LogInScreenView: View {
     var body: some View {
         NavigationView{
             ZStack() {
-                BackgroundColor()
+                //BackgroundColor()
                 BackgroundImage(image: "signup")
                     .navigationBarHidden(true)
                 
@@ -58,9 +58,10 @@ struct LogInScreenView: View {
                         // Email Textfield
                         
                         ZStack (alignment: .leading){
-                            if authentication.user.email.isEmpty { Text(usernamePlaceholder).foregroundColor(Color(.white))
+                            if authentication.user.email.isEmpty { Text(usernamePlaceholder)
+                                .foregroundColor(Color("lightgray"))
                                 .padding()
-                                .font(.system(size: 18, weight: .semibold, design: .default))
+                                .font(.system(size: 18, weight: .medium, design: .default))
                             }
                             TextField("", text: $authentication.user.email)
                                 .padding()
@@ -72,7 +73,7 @@ struct LogInScreenView: View {
                                     
                                 )
                                 .font(.system(size: 18, weight: .medium, design: .default))
-                                .foregroundColor(Color("darkblue"))
+                                .foregroundColor(Color(.white))
                                 .keyboardType(.emailAddress)
                                 .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                                 .disableAutocorrection(true)
@@ -81,9 +82,10 @@ struct LogInScreenView: View {
                         
                         // Secure Textfield
                         ZStack (alignment: .leading){
-                            if authentication.user.password.isEmpty { Text(passwordPlaceholder).foregroundColor(Color(.white))
+                            if authentication.user.password.isEmpty { Text(passwordPlaceholder)
+                                .foregroundColor(Color("lightgray"))
                                 .padding()
-                                .font(.system(size: 18, weight: .semibold, design: .default))
+                                .font(.system(size: 18, weight: .medium, design: .default))
                             }
                             SecureField("", text: $authentication.user.password)
                                 .padding()
@@ -95,7 +97,7 @@ struct LogInScreenView: View {
                                     
                                 )
                                 .font(.system(size: 18, weight: .medium, design: .default))
-                                .foregroundColor(Color("darkblue"))
+                                .foregroundColor(Color(.white))
    
                         }
                         
@@ -103,7 +105,7 @@ struct LogInScreenView: View {
                             authentication.forgotPassword(email: authentication.user.email)
                         } label: {
                             Text("Forgot Password?")
-                                .accentColor(Color(.systemBlue))
+                                .foregroundColor(Color("teamcolor1"))
                                 .offset(x: 70, y: -5)
                         }
                 
@@ -112,7 +114,7 @@ struct LogInScreenView: View {
                             authentication.logIn(userEmail: authentication.user.email, userPassword: authentication.user.password)
                         }
                         label: {
-                            SoftBtn(title: "LOG IN", textColor: .white, backgroundColor: Color("blue"), opacity: 0.8)
+                            SoftBtn(title: "LOG IN", textColor: .white, backgroundColor: Color("teamcolor1"), opacity: 0.8)
 
                         }
                         
@@ -121,11 +123,11 @@ struct LogInScreenView: View {
                     // Stack to hold signup option
                     VStack(spacing: 8) {
                         Text("Don't have an account?")
-                            .foregroundColor(Color(.systemBlue))
+                            .foregroundColor(Color("h1"))
                         NavigationLink(
                             destination: SignUpView(),
                             label: {
-                                SoftBtn(title: "SIGN UP", textColor: Color("blue"), backgroundColor: .white, opacity: 0.95)
+                                SoftBtn(title: "SIGN UP", textColor: Color("teamcolor1"), backgroundColor: .white, opacity: 0.95)
                                 
                             })
                     }.padding(.top, 20)
@@ -133,12 +135,16 @@ struct LogInScreenView: View {
                     Spacer()
                 }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color("backgroundgray"))
+            .ignoresSafeArea(edges: .all)
             .alert(item: $authentication.alertItem) { alertItem in
                 Alert(title: Text(alertItem.title), message: Text(alertItem.message), dismissButton: alertItem.dismissButton)
                     
                 
             }
         }
+        
             
         
         }

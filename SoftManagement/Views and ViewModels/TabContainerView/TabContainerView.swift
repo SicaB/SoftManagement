@@ -11,23 +11,21 @@ struct TabContainerView: View {
     
     @StateObject var viewModel = TabContainerViewModel()
     @EnvironmentObject var appInfo: AppInformation
-    @State var title = ""
-    @State var navBarHidden = false
-
     
     var body: some View {
         ZStack{
+            
             TabView(selection: $appInfo.selectedTab) {
-//                if !appInfo.showPlanTab {
-//                    ForEach(viewModel.tabItemsNoProjects, id: \.self) { item in
-//                        tabView(tabItemType: item.type)
-//                            .tabItem {
-//                                Image(systemName: item.imageName)
-//                                Text(item.title)
-//                            }.tag(item.type)
-//                    }
-//
-//                } else if appInfo.showPlanTab {
+                if appInfo.selectedProject.name.isEmpty {
+                    ForEach(viewModel.tabItemsNoProjects, id: \.self) { item in
+                        tabView(tabItemType: item.type)
+                            .tabItem {
+                                Image(systemName: item.imageName)
+                                Text(item.title)
+                            }.tag(item.type)
+                    }
+
+                } else {
                 
                     ForEach(viewModel.tabItems, id: \.self) { item in
                         tabView(tabItemType: item.type)
@@ -37,7 +35,7 @@ struct TabContainerView: View {
                             }.tag(item.type)
                     }
                     
- //               }
+                }
                 
             }
           
@@ -47,7 +45,8 @@ struct TabContainerView: View {
         }
         
        
-        .accentColor(Color("blue"))
+        .accentColor(Color(.white))
+        
         
 
         //.navigationBarTitle(title)

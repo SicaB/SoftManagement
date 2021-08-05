@@ -49,11 +49,19 @@ struct CreateProjectView: View {
                         Section(header: Text("")){
                            // NavigationLink(destination: HomeScreenView()){
                                 Button {
-                                    viewModel.saveProject(input: viewModel.project)
+                                    if viewModel.project.name.isEmpty {
+                                        authentication.alertItem = AlertContext.invalidProjectName
+                                    } else {
+                                        if viewModel.project.startDate > viewModel.project.deadLine {
+                                            authentication.alertItem = AlertContext.invalidTimeline
+                                        } else {
+                                            viewModel.saveProject(input: viewModel.project)
+                                            isPresented.toggle()
+                                            self.didAddProject(.init(true))
+                                        }
                                     
-                                    isPresented.toggle()
-                                    self.didAddProject(.init(true))
-                                  
+                                    
+                                    }
                                         
                                     } label: {
                                         Text("Done")
@@ -69,6 +77,7 @@ struct CreateProjectView: View {
                 
             }
             .navigationBarTitle("Create Project")
+            .background(Color("h2"))
             .alert(item: $authentication.alertItem) { alertItem in
                 Alert(title: Text(alertItem.title), message: Text(alertItem.message), dismissButton: alertItem.dismissButton)
             }

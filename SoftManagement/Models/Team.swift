@@ -12,15 +12,21 @@ struct Team: Codable, Identifiable, Hashable{
     var id: String { name }
     var docId: String = ""
     var name: String = ""
+    var teamWorkloadInHours: Int = 0
+    var hoursOfDoneWork: Int = 0
+    var workDonePercentage: Float = 0.0
     var tasks = [String]()
     
-    init(name: String, docId: String, tasks: [String]) {
+    init(name: String, docId: String, tasks: [String], teamWorkloadInHours: Int, hoursOfDoneWork: Int, workDonePercentage: Float) {
         self.name = name
         self.docId = docId
+        self.teamWorkloadInHours = teamWorkloadInHours
+        self.hoursOfDoneWork = hoursOfDoneWork
+        self.workDonePercentage = workDonePercentage
         self.tasks = tasks
-//        self.startDate = Date()
-//        self.deadLine = Date()
-//        self.teams = teams
+        
+        
+
         
     }
 }
@@ -31,16 +37,16 @@ struct TeamResponse {
     let request: [Team]
 }
 
-struct TeamMockData {
-    static let sampleTeam1 = Team(name: "iOS", docId: "01", tasks: TaskMockData.eks)
-    static let sampleTeam2 = Team(name: "Android", docId: "02", tasks: TaskMockData.eks)
-    static let sampleTeam3 = Team(name: "Web", docId: "03", tasks: TaskMockData.eks)
-    static let sampleTeam4 = Team(name: "Design", docId: "04", tasks: TaskMockData.eks)
-    static let sampleTeam5 = Team(name: "Backend", docId: "05", tasks: TaskMockData.eks)
-
-    static let teams = [sampleTeam1, sampleTeam2, sampleTeam3, sampleTeam4, sampleTeam5]
-
-}
+//struct TeamMockData {
+//    static let sampleTeam1 = Team(name: "iOS", docId: "01", tasks: TaskMockData.eks)
+//    static let sampleTeam2 = Team(name: "Android", docId: "02", tasks: TaskMockData.eks)
+//    static let sampleTeam3 = Team(name: "Web", docId: "03", tasks: TaskMockData.eks)
+//    static let sampleTeam4 = Team(name: "Design", docId: "04", tasks: TaskMockData.eks)
+//    static let sampleTeam5 = Team(name: "Backend", docId: "05", tasks: TaskMockData.eks)
+//
+//    static let teams = [sampleTeam1, sampleTeam2, sampleTeam3, sampleTeam4, sampleTeam5]
+//
+//}
 
 
 

@@ -10,13 +10,15 @@
 		990785BC26A1820A00314E02 /* ProjectNameOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990785BB26A1820A00314E02 /* ProjectNameOverview.swift */; };
 		990785C026A1860B00314E02 /* TeamsHeadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990785BF26A1860B00314E02 /* TeamsHeadline.swift */; };
 		990785C426A1FB0200314E02 /* DisclosureList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990785C326A1FB0200314E02 /* DisclosureList.swift */; };
+		990785C826A6EDDD00314E02 /* TaskInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990785C726A6EDDC00314E02 /* TaskInformation.swift */; };
+		990785CB26A6F0CC00314E02 /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990785CA26A6F0CC00314E02 /* TaskList.swift */; };
+		9941C10A26B7E32100FB7E67 /* SoftManagementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9941C10926B7E32100FB7E67 /* SoftManagementTests.swift */; };
+		9941C11226B80E4200FB7E67 /* ProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9941C11126B80E4200FB7E67 /* ProjectTests.swift */; };
 		9953A8842670EECB004AE7AC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9953A8832670EECB004AE7AC /* SignUpView.swift */; };
-		99638A1A269ED9CF0037519B /* CreateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99638A19269ED9CF0037519B /* CreateTaskView.swift */; };
-		99638A1C269ED9E50037519B /* CreateTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99638A1B269ED9E50037519B /* CreateTaskViewModel.swift */; };
+		99638A1A269ED9CF0037519B /* TeamInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99638A19269ED9CF0037519B /* TeamInfoView.swift */; };
+		99638A1C269ED9E50037519B /* TeamInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99638A1B269ED9E50037519B /* TeamInfoViewModel.swift */; };
 		99638A1E269F78D30037519B /* PlusImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99638A1D269F78D20037519B /* PlusImage.swift */; };
 		99638A21269F7D2F0037519B /* TeamCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99638A20269F7D2F0037519B /* TeamCard.swift */; };
-		99638A2426A0135E0037519B /* TeamInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99638A2326A0135E0037519B /* TeamInfoView.swift */; };
-		99638A2626A013780037519B /* TeamInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99638A2526A013780037519B /* TeamInfoViewModel.swift */; };
 		99761324269B2F5900AF1AEB /* CreateTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99761323269B2F5900AF1AEB /* CreateTeamView.swift */; };
 		99761326269B2FFE00AF1AEB /* CreateTeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99761325269B2FFE00AF1AEB /* CreateTeamViewModel.swift */; };
 		997AA0A7266EBCC00093EDBB /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997AA0A6266EBCC00093EDBB /* LogInViewModel.swift */; };
@@ -52,18 +54,32 @@
 		B44D710B7BF6D4E2A916D273 /* Pods_SoftManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E88880D39FA30F21E0AC110 /* Pods_SoftManagement.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		9941C10C26B7E32100FB7E67 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 99D2A77F2653A5C200AE2BE1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 99D2A7862653A5C200AE2BE1;
+			remoteInfo = SoftManagement;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0E88880D39FA30F21E0AC110 /* Pods_SoftManagement.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoftManagement.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		990785BB26A1820A00314E02 /* ProjectNameOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNameOverview.swift; sourceTree = "<group>"; };
 		990785BF26A1860B00314E02 /* TeamsHeadline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsHeadline.swift; sourceTree = "<group>"; };
 		990785C326A1FB0200314E02 /* DisclosureList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureList.swift; sourceTree = "<group>"; };
+		990785C726A6EDDC00314E02 /* TaskInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskInformation.swift; sourceTree = "<group>"; };
+		990785CA26A6F0CC00314E02 /* TaskList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskList.swift; sourceTree = "<group>"; };
+		9941C10726B7E32100FB7E67 /* SoftManagementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoftManagementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9941C10926B7E32100FB7E67 /* SoftManagementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftManagementTests.swift; sourceTree = "<group>"; };
+		9941C10B26B7E32100FB7E67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9941C11126B80E4200FB7E67 /* ProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTests.swift; sourceTree = "<group>"; };
 		9953A8832670EECB004AE7AC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		99638A19269ED9CF0037519B /* CreateTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskView.swift; sourceTree = "<group>"; };
-		99638A1B269ED9E50037519B /* CreateTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewModel.swift; sourceTree = "<group>"; };
+		99638A19269ED9CF0037519B /* TeamInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoView.swift; sourceTree = "<group>"; };
+		99638A1B269ED9E50037519B /* TeamInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoViewModel.swift; sourceTree = "<group>"; };
 		99638A1D269F78D20037519B /* PlusImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusImage.swift; sourceTree = "<group>"; };
 		99638A20269F7D2F0037519B /* TeamCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCard.swift; sourceTree = "<group>"; };
-		99638A2326A0135E0037519B /* TeamInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoView.swift; sourceTree = "<group>"; };
-		99638A2526A013780037519B /* TeamInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoViewModel.swift; sourceTree = "<group>"; };
 		99761323269B2F5900AF1AEB /* CreateTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamView.swift; sourceTree = "<group>"; };
 		99761325269B2FFE00AF1AEB /* CreateTeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamViewModel.swift; sourceTree = "<group>"; };
 		997AA0A6266EBCC00093EDBB /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
@@ -103,6 +119,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9941C10426B7E32100FB7E67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		99D2A7842653A5C200AE2BE1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -114,6 +137,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9941C10826B7E32100FB7E67 /* SoftManagementTests */ = {
+			isa = PBXGroup;
+			children = (
+				9941C10926B7E32100FB7E67 /* SoftManagementTests.swift */,
+				9941C10B26B7E32100FB7E67 /* Info.plist */,
+				9941C11126B80E4200FB7E67 /* ProjectTests.swift */,
+			);
+			path = SoftManagementTests;
+			sourceTree = "<group>";
+		};
 		9953A882266F5606004AE7AC /* Backgrounds and logo */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,20 +174,11 @@
 			path = CreateTeamView;
 			sourceTree = "<group>";
 		};
-		99638A18269ED97B0037519B /* CreateTaskView */ = {
+		99638A18269ED97B0037519B /* TeamInfoView */ = {
 			isa = PBXGroup;
 			children = (
-				99638A19269ED9CF0037519B /* CreateTaskView.swift */,
-				99638A1B269ED9E50037519B /* CreateTaskViewModel.swift */,
-			);
-			path = CreateTaskView;
-			sourceTree = "<group>";
-		};
-		99638A2226A012FD0037519B /* TeamInfoView */ = {
-			isa = PBXGroup;
-			children = (
-				99638A2326A0135E0037519B /* TeamInfoView.swift */,
-				99638A2526A013780037519B /* TeamInfoViewModel.swift */,
+				99638A19269ED9CF0037519B /* TeamInfoView.swift */,
+				99638A1B269ED9E50037519B /* TeamInfoViewModel.swift */,
 			);
 			path = TeamInfoView;
 			sourceTree = "<group>";
@@ -211,6 +235,7 @@
 				99D2A7882653A5C200AE2BE1 /* Products */,
 				AFDA4CD85936BD59720683B4 /* Pods */,
 				9A19244ED8AF4F7CAB76604C /* Frameworks */,
+				9941C10826B7E32100FB7E67 /* SoftManagementTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -218,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				99D2A7872653A5C200AE2BE1 /* SoftManagement.app */,
+				9941C10726B7E32100FB7E67 /* SoftManagementTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -250,16 +276,15 @@
 			isa = PBXGroup;
 			children = (
 				99E617E12693241E00BE866B /* LoadingView.swift */,
+				99E617D12684A8D900BE866B /* AccountView */,
 				99D2A7A3266E170200AE2BE1 /* LogInView */,
 				9953A8852670EED4004AE7AC /* SignUpView */,
 				99A719B2267A0C02009FF1D6 /* HomeScreenView */,
 				99A719C3267CC01E009FF1D6 /* TabContainerView */,
 				99E617D02684A8B200BE866B /* ProjectListView */,
 				99E617D42685C99F00BE866B /* CreateProjectView */,
-				99E617D12684A8D900BE866B /* AccountView */,
 				99638A17269ED9700037519B /* CreateTeamView */,
-				99638A18269ED97B0037519B /* CreateTaskView */,
-				99638A2226A012FD0037519B /* TeamInfoView */,
+				99638A18269ED97B0037519B /* TeamInfoView */,
 			);
 			path = "Views and ViewModels";
 			sourceTree = "<group>";
@@ -296,6 +321,8 @@
 				990785BB26A1820A00314E02 /* ProjectNameOverview.swift */,
 				990785BF26A1860B00314E02 /* TeamsHeadline.swift */,
 				990785C326A1FB0200314E02 /* DisclosureList.swift */,
+				990785C726A6EDDC00314E02 /* TaskInformation.swift */,
+				990785CA26A6F0CC00314E02 /* TaskList.swift */,
 			);
 			path = "UI Elements";
 			sourceTree = "<group>";
@@ -362,6 +389,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9941C10626B7E32100FB7E67 /* SoftManagementTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9941C10E26B7E32100FB7E67 /* Build configuration list for PBXNativeTarget "SoftManagementTests" */;
+			buildPhases = (
+				9941C10326B7E32100FB7E67 /* Sources */,
+				9941C10426B7E32100FB7E67 /* Frameworks */,
+				9941C10526B7E32100FB7E67 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9941C10D26B7E32100FB7E67 /* PBXTargetDependency */,
+			);
+			name = SoftManagementTests;
+			productName = SoftManagementTests;
+			productReference = 9941C10726B7E32100FB7E67 /* SoftManagementTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		99D2A7862653A5C200AE2BE1 /* SoftManagement */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 99D2A7962653A5C300AE2BE1 /* Build configuration list for PBXNativeTarget "SoftManagement" */;
@@ -371,6 +416,7 @@
 				99D2A7842653A5C200AE2BE1 /* Frameworks */,
 				99D2A7852653A5C200AE2BE1 /* Resources */,
 				2091BCA115801B72E372BE40 /* [CP] Copy Pods Resources */,
+				9941C11526B9262100FB7E67 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -390,6 +436,10 @@
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					9941C10626B7E32100FB7E67 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 99D2A7862653A5C200AE2BE1;
+					};
 					99D2A7862653A5C200AE2BE1 = {
 						CreatedOnToolsVersion = 12.5;
 					};
@@ -409,11 +459,19 @@
 			projectRoot = "";
 			targets = (
 				99D2A7862653A5C200AE2BE1 /* SoftManagement */,
+				9941C10626B7E32100FB7E67 /* SoftManagementTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9941C10526B7E32100FB7E67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		99D2A7852653A5C200AE2BE1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -444,6 +502,25 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SoftManagement/Pods-SoftManagement-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9941C11526B9262100FB7E67 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
 		FA741EBF734F94B69BEFA0CF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -469,6 +546,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9941C10326B7E32100FB7E67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9941C11226B80E4200FB7E67 /* ProjectTests.swift in Sources */,
+				9941C10A26B7E32100FB7E67 /* SoftManagementTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		99D2A7832653A5C200AE2BE1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -480,17 +566,16 @@
 				99E617D32684A93400BE866B /* ProjectListViewModel.swift in Sources */,
 				99E617E22693241E00BE866B /* LoadingView.swift in Sources */,
 				99D2A78D2653A5C200AE2BE1 /* LogInView.swift in Sources */,
-				99638A1C269ED9E50037519B /* CreateTaskViewModel.swift in Sources */,
+				99638A1C269ED9E50037519B /* TeamInfoViewModel.swift in Sources */,
+				990785CB26A6F0CC00314E02 /* TaskList.swift in Sources */,
 				99A719BC267B44B7009FF1D6 /* AccountView.swift in Sources */,
 				99761324269B2F5900AF1AEB /* CreateTeamView.swift in Sources */,
-				99638A2426A0135E0037519B /* TeamInfoView.swift in Sources */,
 				99E617CF2684836C00BE866B /* TabContainerViewModel.swift in Sources */,
 				99A719BE267B44D9009FF1D6 /* ProjectListView.swift in Sources */,
 				99A719B6267A0D09009FF1D6 /* HomeScreenView.swift in Sources */,
 				99A719B8267B409D009FF1D6 /* Project.swift in Sources */,
 				99A719B12678D8F0009FF1D6 /* Authentication.swift in Sources */,
 				99E617D92685CFF200BE866B /* CreateProjectViewModel.swift in Sources */,
-				99638A2626A013780037519B /* TeamInfoViewModel.swift in Sources */,
 				99E617E4269489DD00BE866B /* AppInformation.swift in Sources */,
 				99A719BA267B40AE009FF1D6 /* Task.swift in Sources */,
 				990785C426A1FB0200314E02 /* DisclosureList.swift in Sources */,
@@ -500,8 +585,9 @@
 				99A719CF26808C85009FF1D6 /* ProgressBar.swift in Sources */,
 				99A719C0267B588D009FF1D6 /* TabContainerView.swift in Sources */,
 				99E617CB26830AEC00BE866B /* ProjectRepository.swift in Sources */,
-				99638A1A269ED9CF0037519B /* CreateTaskView.swift in Sources */,
+				99638A1A269ED9CF0037519B /* TeamInfoView.swift in Sources */,
 				9953A8842670EECB004AE7AC /* SignUpView.swift in Sources */,
+				990785C826A6EDDD00314E02 /* TaskInformation.swift in Sources */,
 				99D2A78B2653A5C200AE2BE1 /* SoftManagementApp.swift in Sources */,
 				99761326269B2FFE00AF1AEB /* CreateTeamViewModel.swift in Sources */,
 				99638A21269F7D2F0037519B /* TeamCard.swift in Sources */,
@@ -517,7 +603,55 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		9941C10D26B7E32100FB7E67 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 99D2A7862653A5C200AE2BE1 /* SoftManagement */;
+			targetProxy = 9941C10C26B7E32100FB7E67 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		9941C10F26B7E32100FB7E67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WF3M29M7CQ;
+				INFOPLIST_FILE = SoftManagementTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = SicaCreations.com.snb.SoftManagementTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SoftManagement.app/SoftManagement";
+			};
+			name = Debug;
+		};
+		9941C11026B7E32100FB7E67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WF3M29M7CQ;
+				INFOPLIST_FILE = SoftManagementTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = SicaCreations.com.snb.SoftManagementTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SoftManagement.app/SoftManagement";
+			};
+			name = Release;
+		};
 		99D2A7942653A5C300AE2BE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -641,6 +775,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"SoftManagement/Preview Content\"";
 				DEVELOPMENT_TEAM = WF3M29M7CQ;
 				ENABLE_PREVIEWS = YES;
@@ -683,6 +818,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9941C10E26B7E32100FB7E67 /* Build configuration list for PBXNativeTarget "SoftManagementTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9941C10F26B7E32100FB7E67 /* Debug */,
+				9941C11026B7E32100FB7E67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		99D2A7822653A5C200AE2BE1 /* Build configuration list for PBXProject "SoftManagement" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

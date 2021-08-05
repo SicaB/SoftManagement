@@ -16,10 +16,10 @@ struct ProgressBar: View {
             ZStack(alignment: .leading){
                 Rectangle().frame(width: geometry.size.width, height: geometry.size.height)
                     .opacity(0.3)
-                    .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    .foregroundColor(Color("progressbg"))
                 
                 Rectangle().frame(width: min(CGFloat(self.value)*geometry.size.width, geometry.size.width), height: geometry.size.height)
-                    .foregroundColor(Color("blue"))
+                    .foregroundColor(Color("teamcolor1"))
                     .animation(.linear)
             }
             .cornerRadius(45.0)

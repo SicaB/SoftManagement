@@ -10,7 +10,7 @@ import SwiftUI
 struct BackgroundColor: View {
     
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [Color("blue"), Color("lightblue")]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        LinearGradient(gradient: Gradient(colors: [Color("teamcolor1"), Color("lightgray")]), startPoint: .topLeading, endPoint: .bottomTrailing)
             .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
     }
 }
@@ -25,9 +25,8 @@ struct BackgroundImage: View {
         Image(image)
             .resizable()
             .foregroundColor(Color.blue)
-            .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-            .opacity(0.65)
+            .opacity(0.20)
     }
 }
 

@@ -13,14 +13,20 @@ class ProjectListViewModel: ObservableObject {
     @EnvironmentObject var appInfo: AppInformation
     @Published var repository = ProjectRepository()
     @Published var projectsInDB = false
+    @Published var lastAddedProject = Project(name: "", docId: "", progressCount: 0.0)
     
     
     @Published var allProjects: [Project] = []
-    
-//    @Published var projects = [String]()
     @Published var projectDocIds = [String]()
     
-    let group = DispatchGroup()    
+    let group = DispatchGroup()
+    
+    init() {
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        UITableView.appearance().backgroundColor = .clear
+       
+
+    }
     
     func anyProjectsInDB() {
             self.repository.anyProjectsInDatabase(completion: { (anyProjects) in
@@ -40,6 +46,8 @@ class ProjectListViewModel: ObservableObject {
                         print("getProject Called")
                         self.projectDocIds.removeAll()
                         self.projectDocIds.append(contentsOf: docIDs)
+                        self.lastAddedProject = self.allProjects[0]
+                        print("Last Project added was: \(lastAddedProject.name)")
                       
                         self.repository.isLoading = false
                        

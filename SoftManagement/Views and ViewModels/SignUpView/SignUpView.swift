@@ -41,7 +41,9 @@ struct SignUpView: View {
                     }
                 }
                     
-                }.navigationBarTitle("Sign Up")
+                }
+                .navigationBarTitle("Sign Up")
+                .background(Color("h2"))
                 
             }
             .alert(item: $authentication.alertItem) { alertItem in
