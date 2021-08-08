@@ -36,12 +36,17 @@ struct CreateProjectView: View {
                             // Startdate
                             DatePicker(selection: $viewModel.project.startDate, in: Date()..., displayedComponents: .date) {
                                 Text("Start Date")
+                                    .foregroundColor(Color("h1"))
                             }
+                            .accentColor(Color("teamcolor1"))
                             
                             // Deadline
                             DatePicker(selection: $viewModel.project.deadLine, in: Date()..., displayedComponents: .date) {
                                 Text("Deadline")
+                                    .foregroundColor(Color("h1"))
                             }
+                            .accentColor(Color("teamcolor1"))
+                            
                             
                             
                         }
@@ -65,6 +70,7 @@ struct CreateProjectView: View {
                                         
                                     } label: {
                                         Text("Done")
+                                            .foregroundColor(Color("teamcolor1"))
                                         
                                     }
                          //   }
@@ -77,19 +83,34 @@ struct CreateProjectView: View {
                 
             }
             .navigationBarTitle("Create Project")
-            .background(Color("h2"))
+            .navigationBarItems(trailing: Button(action: {
+                isPresented.toggle()
+            }, label: {
+                Image(systemName: "xmark.circle.fill")
+                    .accentColor(Color("teamcolor1"))
+                    .font(.title)
+            })
+            .padding(.top, 20)
+            
+            )
             .alert(item: $authentication.alertItem) { alertItem in
                 Alert(title: Text(alertItem.title), message: Text(alertItem.message), dismissButton: alertItem.dismissButton)
             }
             
         }
+        .preferredColorScheme(.dark)
+
     }
 }
 
-//struct CreateProjectView_Previews: PreviewProvider {
-//    var isPresented = true
-//    static var previews: some View {
-//        CreateProjectView(isPresented: .constant(true), didAddProject)
-//            .environmentObject(Authentication())
-//    }
-//}
+struct CreateProjectView_Previews: PreviewProvider {
+    var isPresented = true
+    static var previews: some View {
+        CreateProjectView(isPresented: .constant(true), didAddProject: {
+                          project in
+ 
+                      })
+            .environmentObject(Authentication())
+            
+    }
+}

@@ -24,7 +24,11 @@ class ProjectListViewModel: ObservableObject {
     init() {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         UITableView.appearance().backgroundColor = .clear
-       
+        UITableViewCell.appearance().selectedBackgroundView = {
+                    let view = UIView()
+                    view.backgroundColor = UIColor(named: "backgroundgray")
+                    return view
+                }()
 
     }
     
@@ -69,14 +73,11 @@ class ProjectListViewModel: ObservableObject {
 
     }
     
-    func deleteProject(at indexSet: IndexSet) {
+    func deleteProject(docId: String) {
 
         DispatchQueue.main.async { [self] in
             repository.isLoading = true
-            indexSet.forEach { index in
-                allProjects.remove(at: index)
-            }
-            repository.deleteProject(at: indexSet, docIds: projectDocIds)
+            repository.deleteProject(docId: docId)
             anyProjectsInDB()
         }
         

@@ -13,6 +13,7 @@ class AppInformation: ObservableObject {
     @Published var selectedTab: TabItem.TabItemType = .projects
     @Published var showPlanTab = false
     @Published var showSheetView = false
+    @Published var teamInfoViewIsOpen = false
     @Published var activeSheet: ActiveSheet?
     @Published var repository = ProjectRepository()
     @Published var selectedTeam = Team(name: "No Team Selected", docId: "", tasks: [], teamWorkloadInHours: 0, hoursOfDoneWork: 0, workDonePercentage: 0.0)

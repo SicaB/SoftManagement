@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct TeamInfoView: View {
     
@@ -20,19 +21,33 @@ struct TeamInfoView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     @State private var isExpanded = false
+    @State var uiTabarController: UITabBarController?
     
     var body: some View {
         ZStack {
             VStack {
                 VStack(){
+                    
+//                    Image(systemName: "chevron.backward")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(width: 20, height: 20)
+//                        .frame(maxWidth: .infinity, alignment: .leading)
+//                        .padding()
+//                        .padding(.top, 40)
+//                        .foregroundColor(Color("lightgray"))
+//                        .onTapGesture {
+//                            mode.wrappedValue.dismiss()
+//
+//                        }
 
                     Text(appInfo.selectedProject.name)
                         .foregroundColor(Color.white)
                         .font(.title)
-                        .padding(.top, 50)
+                        .padding(.top, 40)
 
                 }
-                .frame(maxWidth: .infinity, maxHeight: 160)
+                .frame(maxWidth: .infinity, maxHeight: 180)
                 .background(Color("darkgray"))
                 
                 VStack(){
@@ -59,7 +74,7 @@ struct TeamInfoView: View {
                                 .padding(.horizontal, 8)
                         }
                         
-                        Image(systemName: "xmark.circle.fill")
+                        Image(systemName: "trash")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 25, height: 25)
@@ -202,12 +217,17 @@ struct TeamInfoView: View {
                        
                     } else {
                         TaskList(viewModel: viewModel)
+                            
                     }
 
                 }
                 
             }
-            .onAppear(){
+            .introspectTabBarController { (UITabBarController) in
+                UITabBarController.tabBar.isHidden = true
+                    uiTabarController = UITabBarController
+                }
+                .onAppear(){
                 viewModel.selectedProjectDocId = appInfo.selectedProject.docId
                 viewModel.selectedTeam = appInfo.selectedTeam
                 viewModel.getTasks()
@@ -221,10 +241,16 @@ struct TeamInfoView: View {
             
         }
         .background(Color("backgroundgray"))
-        .ignoresSafeArea(edges: .top)
+        .edgesIgnoringSafeArea(.all)
+       // .navigationBarHidden(true)
+        
+        
+        
         
         
     }
+   
+    
 }
 
 

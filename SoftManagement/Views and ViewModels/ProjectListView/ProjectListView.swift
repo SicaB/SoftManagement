@@ -51,7 +51,7 @@ struct ListOfProjectsView: View {
     @ObservedObject var viewModel: ProjectListViewModel
     @EnvironmentObject var authentication: Authentication
     @EnvironmentObject var appInfo: AppInformation
-    @State var isAnimated: Bool = false
+    @State var showingAlert = false
     @State private var selectedName: String?
     
     var body: some View {
@@ -64,17 +64,17 @@ struct ListOfProjectsView: View {
                         .font(.largeTitle)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 25)
-                        
-                   
+                    
+                    
                     Button(action: {
                         appInfo.activeSheet = .showProjectView
                         appInfo.showSheetView.toggle()
                     }, label: {
                         VStack{
-                            Image(systemName: "plus.rectangle.on.folder")
+                            Image(systemName: "plus.circle")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 50, height: 35)
+                                .frame(width: 35, height: 35)
                                 .foregroundColor(Color("teamcolor1"))
                                 .frame(maxWidth: .infinity, alignment: .trailing)
                         }
@@ -100,55 +100,122 @@ struct ListOfProjectsView: View {
                 //.frame(maxWidth: .infinity, maxHeight: 60)
                 //.padding()
                 
-                
-
-
-
             }
             .frame(maxWidth: .infinity, maxHeight: 160, alignment: .bottom)
             .background(Color("header"))
             .ignoresSafeArea(edges: .top)
             
+            // ForEach(MockData.projects) { (name) in
+            
+            //Array(self.viewModel.allProjects.enumerated()), id: \.1.id) { (index, name) in
             
             VStack {
-                List {
-                    ForEach(viewModel.allProjects) { name in
-                        
+                ScrollView {
+                    ForEach(Array(self.viewModel.allProjects.enumerated()), id: \.1.id) { (index, name) in
                         HStack{
+                            
                             Button(action: {
-                                withAnimation(.default) {
+            
                                     self.selectedName = name.name
-                                    isAnimated.toggle()
                                     appInfo.saveSelectedProject(project: name)
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(400), execute: {
-                                        appInfo.selectedTab = .plan
-                                        isAnimated.toggle()
-                                    })
-                                }
-                            }) {
-                                Text(name.name)
-                                    .font(.title2)
-                                    .foregroundColor(Color("h1"))
+                                    appInfo.selectedTab = .plan
+                                    
+                                    
                                 
+                            }) {
+                                
+                                    VStack{
+                                        Text(name.name)
+                                            .font(.title2)
+                                            .foregroundColor(Color("h1"))
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                            .padding(.leading, 10)
+                                           // .padding(.bottom, -1)
+                                        
+                                        ProgressBar(value: name.progressCount)
+                                            .frame(height: 20)
+                                            .padding(.leading, 10)
+                                    }
+                                    .padding(.leading, 10)
+
                             }
-                            .animation(.spring())
-                            .listRowBackground(self.selectedName == name.name && isAnimated ? Color("blue") : Color(.white))
+                            
+                            
+                            Image(systemName: "trash")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 25, height: 25)
+                                .frame(alignment: .trailing)
+                                .foregroundColor(Color("lightgray"))
+                                .padding()
+                                .onTapGesture {
+                                    self.showingAlert = true
+                                    print("hellooo")
+                                }
+                                .alert(isPresented: $showingAlert) {
+                                    Alert(
+                                        title: Text("Delete Project")
+                                            .bold()
+                                            .font(.title2),
+                                        message: Text("Are you sure you want to delete the project \(name.name)?"),
+                                        primaryButton: .destructive(Text("Delete")){
+                                            viewModel.allProjects.remove(at: index)
+                                            viewModel.deleteProject(docId: name.docId)
+                                            //mode.wrappedValue.dismiss()
+                                        }, secondaryButton: .cancel()
+                                        
+                                    )
+                                    
+                                }
+                            //                            .animation(.spring())
+                            //                            .listRowBackground(self.selectedName == name.name && isAnimated ? Color.gray : Color(UIColor.systemGroupedBackground))
+                            
+                            //                            Button(action: {
+                            //
+                            //                            }) {
+                            //                                VStack{
+                            //                                    Image(systemName: "trash")
+                            //                                        .resizable()
+                            //                                        .aspectRatio(contentMode: .fit)
+                            //                                        .frame(width: 20, height: 30)
+                            //                                        .foregroundColor(Color(.gray))
+                            //
+                            //
+                            //                                }
+                            //                                .frame(width: 50, height: 80)
+                            //                                .onTapGesture {
+                            //
+                            //                                }
+                            //
+                            //
+                            //                            }
+                            //
                         }
+                        .frame(maxWidth: .infinity, minHeight: 100)
+                        .background(Color("card"))
+                        .cornerRadius(25)
+                        .shadow(color: Color("shadowgray"), radius: 10)
+                        .padding(.vertical, 10)
+                        .padding(.leading, 10)
                         
                     }
-                    .onDelete(perform: viewModel.deleteProject(at:))
-                    .listRowBackground(Color("card"))
+                    //.onDelete(perform: viewModel.deleteProject(at:))
+                    //.listRowBackground(Color("backgroundgray"))
+                    //                    .frame(maxWidth: .infinity, minHeight: 80)
+                    //                    .cornerRadius(25)
+                    //                    .padding(.vertical, 5)
                     
                     
                 }
-                .environment(\.defaultMinListRowHeight, 50)
-                .padding()
+                //.environment(\.defaultMinListRowHeight, 50)
+                //.padding()
             }
-            .background(Color("card"))
+            .background(Color("backgroundgray"))
             .cornerRadius(25)
             .shadow(color: Color("backgroundgray"), radius: 10)
-            .padding()
-            .padding(.top, -50)
+            .padding(.horizontal)
+            .padding(.top, -15)
+            .ignoresSafeArea(edges: .bottom)
             
             
             
@@ -173,6 +240,8 @@ struct ListOfProjectsView: View {
             
             //            DispatchQueue.main.async { [self] in
             viewModel.getProjects()
+            
+           
             //                appInfo.showPlanTab = true
             ////
             //            }
@@ -191,10 +260,6 @@ struct ListOfProjectsView: View {
             // //               viewModel.getProjects()
             // //           })
             //
-        }
-        
-        .alert(item: $authentication.alertItem) { alertItem in
-            Alert(title: Text(alertItem.title), message: Text(alertItem.message), dismissButton: alertItem.dismissButton)
         }
     }
 }
@@ -236,8 +301,7 @@ struct NoProjectsView: View {
         .background(Color("backgroundgray"))
         .ignoresSafeArea(edges: .top)
         .onAppear(){
-            //viewModel.anyProjectsInDB()
-            //
+            
             appInfo.showPlanTab = false
             print("hello: NoProjects")
             
@@ -248,15 +312,8 @@ struct NoProjectsView: View {
             CreateProjectView(isPresented: $appInfo.showSheetView, didAddProject: {
                 project in
                 
-                print("hello: No project sheet")
                 viewModel.projectsInDB = true
                 appInfo.showPlanTab = true
-                
-                //                appInfo.showPlanTab = true
-                //                print("Debug: Calling getProjects from .sheet in NoProjectsView")
-                // viewModel.getProjects()
-                //appInfo.showPlanTab = true
-                //                print("Debug: (No ProjectsView) Der er tilføjet et projekt og variablen er derfor: \(viewModel.repository.projectsInDB)")
                 
                 
             })
@@ -277,8 +334,9 @@ struct ProjectListView_Previews: PreviewProvider {
     }
     static var previews: some View {
         NavigationView{
-            NoProjectsView(viewModel: ProjectListViewModel())
+            ListOfProjectsView(viewModel: ProjectListViewModel())
                 .environmentObject(AppInformation())
+                .environmentObject(Authentication())
         }
     }
 }

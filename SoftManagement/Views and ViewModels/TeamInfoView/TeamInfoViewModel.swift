@@ -27,7 +27,8 @@ class TeamInfoViewModel: ObservableObject {
     init() {
         repository.isLoading = false
         UITableView.appearance().backgroundColor = .clear
-    
+        UINavigationBar.appearance().backgroundColor = .clear
+        
         
     }
 

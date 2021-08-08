@@ -37,8 +37,8 @@ struct Project: Identifiable, Codable {
 //    let request: [Project]
 //}
 
-//struct MockData {
-//    static let sampleProject = Project(name: "Test Project", teams: [])
-//
-//    static let projects = [sampleProject, sampleProject,sampleProject,sampleProject]
-//}
+struct MockData {
+    static let sampleProject = Project(name: "Test Project", docId: "54646", progressCount: 0.5)
+
+    static let projects = [sampleProject, sampleProject, sampleProject, sampleProject]
+}

@@ -48,6 +48,7 @@ struct CreateTeamView: View {
 
                             } label: {
                                 Text("Done")
+                                    .foregroundColor(Color("teamcolor1"))
                                 
                             }
                             //   }
@@ -60,17 +61,30 @@ struct CreateTeamView: View {
                 
             }
             .navigationBarTitle("Create Team")
-            .background(Color("h2"))
+            .navigationBarItems(trailing: Button(action: {
+                isPresented.toggle()
+            }, label: {
+                Image(systemName: "xmark.circle.fill")
+                    .accentColor(Color("teamcolor1"))
+                    .font(.title)
+            })
+            .padding(.top, 20)
+        )
             .alert(item: $authentication.alertItem) { alertItem in
                 Alert(title: Text(alertItem.title), message: Text(alertItem.message), dismissButton: alertItem.dismissButton)
             }
             
         }
+        .preferredColorScheme(.dark)
     }
 }
 
-//struct CreateTeamView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CreateTeamView()
-//    }
-//}
+struct CreateTeamView_Previews: PreviewProvider {
+    static var previews: some View {
+        CreateTeamView(isPresented: .constant(true), didAddTeam: {
+            project in
+
+        })
+        .environmentObject(Authentication())
+    }
+}

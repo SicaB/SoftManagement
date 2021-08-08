@@ -15,36 +15,30 @@ struct TabContainerView: View {
     var body: some View {
         ZStack{
             
-            TabView(selection: $appInfo.selectedTab) {
-                if appInfo.selectedProject.name.isEmpty {
-                    ForEach(viewModel.tabItemsNoProjects, id: \.self) { item in
-                        tabView(tabItemType: item.type)
-                            .tabItem {
-                                Image(systemName: item.imageName)
-                                Text(item.title)
-                            }.tag(item.type)
-                    }
+           TabView(selection: $appInfo.selectedTab) {
+                    if appInfo.selectedProject.name.isEmpty {
+                        ForEach(viewModel.tabItemsNoProjects, id: \.self) { item in
+                            tabView(tabItemType: item.type)
+                                .tabItem {
+                                    Image(systemName: item.imageName)
+                                    Text(item.title)
+                                }.tag(item.type)
+                        }
 
-                } else {
-                
-                    ForEach(viewModel.tabItems, id: \.self) { item in
-                        tabView(tabItemType: item.type)
-                            .tabItem {
-                                Image(systemName: item.imageName)
-                                Text(item.title)
-                            }.tag(item.type)
+                    } else {
+                    
+                        ForEach(viewModel.tabItems, id: \.self) { item in
+                            tabView(tabItemType: item.type)
+                                .tabItem {
+                                    Image(systemName: item.imageName)
+                                    Text(item.title)
+                                }.tag(item.type)
+                        }
+                        
                     }
                     
                 }
-                
             }
-          
-            
-                
-            
-        }
-        
-       
         .accentColor(Color(.white))
         
         
@@ -72,8 +66,8 @@ struct TabContainerView: View {
             NavigationView{
             HomeScreenView()
             }
-            .animation(.easeInOut)
-            .transition(.slide) 
+           
+            //.transition(.slide)
         case .account:
             NavigationView{
             AccountView()
@@ -92,6 +86,7 @@ struct TabContainerView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
             TabContainerView()
+                .environmentObject(AppInformation())
         }
     }
 }

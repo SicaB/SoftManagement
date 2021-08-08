@@ -383,12 +383,11 @@ class ProjectRepository {
         }
     }
 
-    func deleteProject(at indexSet: IndexSet, docIds: [String]){
+    func deleteProject(docId: String){
         self.isLoading = true
-        indexSet.forEach { index in
-            let projectToDelete = docIds[index]
+
             DispatchQueue.main.async {
-                self.db.collection("Projects").document(projectToDelete).delete() { error in
+                self.db.collection("Projects").document(docId).delete() { error in
                     
                     if let error = error {
                         print(error.localizedDescription)
@@ -398,7 +397,7 @@ class ProjectRepository {
                 }
                 self.isLoading = false
             }
-        }
+ 
     }
     
     func deleteTeam(projectDocId: String, teamDocId: String){

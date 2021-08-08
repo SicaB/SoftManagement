@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct HomeScreenView: View {
     
     @StateObject var viewModel = HomeScreenViewModel()
     @EnvironmentObject var appInfo: AppInformation
     @EnvironmentObject var authentication: Authentication
+    
+   
     
     
     var body: some View {
@@ -40,6 +43,8 @@ struct HomeScreenView: View {
         }
         .background(Color("backgroundgray"))
         .ignoresSafeArea(edges: .top)
+        .ignoresSafeArea(edges: .bottom)
+        
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear(){
             
@@ -57,7 +62,7 @@ struct ListOfTeamsView: View {
     
     @State private var action: Int? = 0
     @State private var tasksItems = [Task]()
-    
+    @State var uiTabarController: UITabBarController?
     
     
     //    List(MockData.projects) { project in
@@ -69,6 +74,7 @@ struct ListOfTeamsView: View {
     
     
     var body: some View{
+        
         VStack(){
             NavigationLink(
                 destination: TeamInfoView(), tag: 1, selection: $action){
@@ -89,6 +95,7 @@ struct ListOfTeamsView: View {
                         Button(action: {
                             self.appInfo.selectedTeam = team
                             self.action = 1
+                            appInfo.teamInfoViewIsOpen = true
                             
                         }, label: {
                             if appInfo.repository.isLoading {
@@ -112,7 +119,13 @@ struct ListOfTeamsView: View {
             
             
         }
+        .introspectTabBarController { (UITabBarController) in
+            UITabBarController.tabBar.isHidden = false
+                uiTabarController = UITabBarController
+        }
+        
         .padding()
+        .padding(.bottom, 80)
         //.frame(maxWidth: .infinity, minHeight: 330, maxHeight: .infinity)
         //.background(Color.white)
         //.frame(alignment: .top)
@@ -122,7 +135,8 @@ struct ListOfTeamsView: View {
         .onAppear(){
             appInfo.getTeams(projectDocId: appInfo.selectedProject.docId)
             viewModel.selectedProjectId = appInfo.selectedProject.docId
-            
+            appInfo.teamInfoViewIsOpen = false
+            uiTabarController?.tabBar.isHidden = false
             //viewModel.getTeams(projectDocId: appInfo.selectedProject.docId)
             //print("from onappear in taskview: \(viewModel.teams)")
 //            for team in viewModel.teams  {
@@ -131,9 +145,15 @@ struct ListOfTeamsView: View {
 //
 //            appInfo.teams = viewModel.teams
         }
+       
+        
         
     }
     
+}
+
+struct Global {
+    static var tabBar : UITabBar?
 }
 
 

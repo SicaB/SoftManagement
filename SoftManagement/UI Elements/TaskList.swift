@@ -84,6 +84,7 @@ struct TaskList: View {
                                     viewModel.allTasks[index].isDone = false
                                     viewModel.calculateWorkload()
                                     viewModel.saveDoneWork()
+                                    
                                 }
                             } else {
                                 Image(systemName: "circle")
@@ -96,6 +97,7 @@ struct TaskList: View {
                                         viewModel.allTasks[index].isDone = true
                                         viewModel.calculateWorkload()
                                         viewModel.saveDoneWork()
+                                       
                                         
                                     }
                                 
@@ -108,6 +110,7 @@ struct TaskList: View {
                 }
                 .onDelete(perform: viewModel.deleteTask(at:))
                 .listRowBackground(Color("card"))
+                
             }
             
             
