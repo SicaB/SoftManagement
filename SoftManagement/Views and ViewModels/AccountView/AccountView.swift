@@ -11,7 +11,7 @@ struct AccountView: View {
     @EnvironmentObject var authentication: Authentication
     
     var body: some View {
-        VStack {
+        ZStack {
             VStack{
                 Text("You are signed in")
                     .foregroundColor(Color("h1"))
@@ -29,8 +29,9 @@ struct AccountView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("backgroundgray"))
-        .ignoresSafeArea(edges: .top)
+        .ignoresSafeArea(edges: .all)
         .navigationViewStyle(StackNavigationViewStyle())
+        .navigationBarHidden(true)
         
     }
 }

@@ -32,6 +32,7 @@ struct ProjectListView: View {
                 
             }
         }
+        .ignoresSafeArea(edges: .all)
         .onAppear() {
             //    viewModel.repository.anyProjectsInDatabase(completion: { (anyProjects) in
             viewModel.anyProjectsInDB()
@@ -96,6 +97,7 @@ struct ListOfProjectsView: View {
                         })
                     })
                 }
+                .padding(.horizontal, 10)
                 
                 //.frame(maxWidth: .infinity, maxHeight: 60)
                 //.padding()
@@ -103,7 +105,8 @@ struct ListOfProjectsView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: 160, alignment: .bottom)
             .background(Color("header"))
-            .ignoresSafeArea(edges: .top)
+            .padding(.bottom, 20)
+            
             
             // ForEach(MockData.projects) { (name) in
             
@@ -215,9 +218,12 @@ struct ListOfProjectsView: View {
             .shadow(color: Color("backgroundgray"), radius: 10)
             .padding(.horizontal)
             .padding(.top, -15)
-            .ignoresSafeArea(edges: .bottom)
+            .padding(.bottom, 60)
+            .padding (.trailing, 10)
             
-            
+            .onAppear{
+               
+            }
             
             
         }
@@ -243,7 +249,7 @@ struct ListOfProjectsView: View {
             
            
             //                appInfo.showPlanTab = true
-            ////
+            ///
             //            }
             
             

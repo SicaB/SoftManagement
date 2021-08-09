@@ -42,8 +42,8 @@ struct HomeScreenView: View {
 
         }
         .background(Color("backgroundgray"))
-        .ignoresSafeArea(edges: .top)
-        .ignoresSafeArea(edges: .bottom)
+        .ignoresSafeArea(edges: .all)
+        
         
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear(){
