@@ -25,14 +25,6 @@ struct TeamsHeadline: View {
                 .padding(.leading, 2)
                 .padding(.bottom, 5)
 
-//            Image(systemName: "person.3.fill")
-//                .resizable()
-//                .aspectRatio(contentMode: .fit)
-//                .frame(width: 110, height: 110, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-//                .foregroundColor(Color("lightgray"))
-//                .padding(.bottom, 10)
-
-           
                 
             Spacer()
 

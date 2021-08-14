@@ -10,9 +10,12 @@ import FirebaseAuth
 
 final class Authentication: ObservableObject {
  
-    @Published var user = User()
+    
+    @Published var user = User(docId: "")
     @Published var signedIn = false
     @Published var alertItem: AlertItem?
+    @Published var repository = ProjectRepository()
+    @Published var userId = ""
 
     
     let auth = Auth.auth()
@@ -42,6 +45,8 @@ final class Authentication: ObservableObject {
             DispatchQueue.main.async {
                 // Success
                 self?.signedIn = true
+                self?.userId = self!.auth.currentUser!.uid
+                
             }
             
         }
@@ -52,12 +57,14 @@ final class Authentication: ObservableObject {
     func logOut() {
         try? auth.signOut()
         self.signedIn = false
+        self.userId = ""
     }
     
     func signUp(name: String, username: String, email: String, password: String) {
         // check if the form has been correctly filled
         guard isValidForm else { return }
         auth.createUser(withEmail: email, password: password) { [weak self] (result, error) in
+            self!.repository.saveUser(userId: self!.auth.currentUser!.uid, user: self!.user)
             
             if error != nil {
                 print(error?.localizedDescription ?? "")
@@ -72,6 +79,7 @@ final class Authentication: ObservableObject {
             DispatchQueue.main.async {
                 // Success
                 self?.signedIn = true
+                self?.userId = self!.auth.currentUser!.uid
             }
         }
     }

@@ -10,6 +10,7 @@ import SwiftUI
 class TeamInfoViewModel: ObservableObject {
     
     @Published var repository = ProjectRepository()
+    @Published var userDocId: String?
     @Published var task = Task(docId: "", title: "", description: "", workLoad: 0, isDone: false)
     @Published var allTasks: [Task] = []
     @Published var selectedTeam = Team(name: "", docId: "", tasks: [], teamWorkloadInHours: 0, hoursOfDoneWork: 0, workDonePercentage: 0.0)
@@ -29,13 +30,12 @@ class TeamInfoViewModel: ObservableObject {
         UITableView.appearance().backgroundColor = .clear
         UINavigationBar.appearance().backgroundColor = .clear
         
-        
     }
 
     
-    func saveTask() {
+    func saveTask(userDocId: String) {
 
-        repository.saveTask(input: task, teamDocId: selectedTeam.docId, projectDocId: selectedProjectDocId)
+        repository.saveTask(input: task, teamDocId: selectedTeam.docId, projectDocId: selectedProjectDocId, userDocId: userDocId)
 
         self.selectedTeam.tasks.append(task.title)
         self.allTasks.append(task)
@@ -51,8 +51,8 @@ class TeamInfoViewModel: ObservableObject {
         
     }
     
-    func deleteTeam() {
-        repository.deleteTeam(projectDocId: selectedProjectDocId, teamDocId: selectedTeam.docId)
+    func deleteTeam(userDocId: String) {
+        repository.deleteTeam(userDocId: userDocId, projectDocId: selectedProjectDocId, teamDocId: selectedTeam.docId)
     }
     
     func deleteTask(at indexSet: IndexSet) {
@@ -69,7 +69,7 @@ class TeamInfoViewModel: ObservableObject {
                     }
                     self.selectedTeam.workDonePercentage = Float(selectedTeam.hoursOfDoneWork)/Float(self.selectedTeam.teamWorkloadInHours)
 
-                    repository.deleteTask(projectDocId: self.selectedProjectDocId, teamDocId: self.selectedTeam.docId, task: task)
+                    repository.deleteTask(userDocId: userDocId!, projectDocId: self.selectedProjectDocId, teamDocId: self.selectedTeam.docId, task: task)
                     allTasks.remove(at: index)
                                            
                     self.calculateWorkload()
@@ -80,9 +80,9 @@ class TeamInfoViewModel: ObservableObject {
                 }
         }
     
-    func getSelectedTeam(){
+    func getSelectedTeam(userDocId: String){
         repository.isLoading = true
-        repository.getSelectedTeam(teamDocId: selectedTeam.docId, projectDocId: selectedProjectDocId) { team in
+        repository.getSelectedTeam(userDocId: userDocId, teamDocId: selectedTeam.docId, projectDocId: selectedProjectDocId) { team in
             self.selectedTeam = team
             print("getSelectedTeam Called")
             print("selected team info: \(self.selectedTeam)")
@@ -90,10 +90,10 @@ class TeamInfoViewModel: ObservableObject {
     }
 
     
-    func getTasks() {
+    func getTasks(userDocId: String) {
         DispatchQueue.main.async { [self] in
             repository.isLoading = true
-                self.repository.getTasks(projectDocId: selectedProjectDocId, teamDocId: selectedTeam.docId, completion: { (tasks, docIDs) in
+                self.repository.getTasks(userDocId: userDocId, projectDocId: selectedProjectDocId, teamDocId: selectedTeam.docId, completion: { (tasks, docIDs) in
                     self.allTasks.removeAll()
                     self.allTasks.append(contentsOf: tasks)
                     
@@ -142,13 +142,13 @@ class TeamInfoViewModel: ObservableObject {
  
     }
     
-    func saveDoneWork(){
+    func saveDoneWork(userDocId: String){
         for task in allTasks {
-            repository.updateTaskData(task: task, teamDocId: selectedTeam.docId, projectDocId: selectedProjectDocId)
+            repository.updateTaskData(userDocId: userDocId, task: task, teamDocId: selectedTeam.docId, projectDocId: selectedProjectDocId)
             
             }
 
-        self.repository.updateTeamData(team: self.selectedTeam, projectDocId: self.selectedProjectDocId)
+        self.repository.updateTeamData(userDocId: userDocId, team: self.selectedTeam, projectDocId: self.selectedProjectDocId)
         
     }
     

@@ -27,8 +27,8 @@ final class TabContainerViewModel: ObservableObject {
         .init(imageName: "doc.text.magnifyingglass", title: "Projects", type: .projects)
     ]
     
-    func anyProjectsInDB() {
-            self.repository.anyProjectsInDatabase(completion: { (anyProjects) in
+    func anyProjectsInDB(userDocId: String) {
+        self.repository.anyProjectsInDatabase(userDocId: userDocId, completion: { (anyProjects) in
                 self.showPlanTab = anyProjects
                
             })

@@ -11,8 +11,12 @@ struct ProjectListView: View {
     
     @StateObject var viewModel = ProjectListViewModel()
     @EnvironmentObject var authentication: Authentication
-    // @EnvironmentObject var appInfo: AppInformation
+    @EnvironmentObject var appInfo: AppInformation
     //   @Environment(\.presentationMode) var presentation
+    
+//    init() {
+//        appInfo.userId = authentication.auth.currentUser!.uid
+//    }
     
     var body: some View {
         ZStack{
@@ -32,11 +36,21 @@ struct ProjectListView: View {
                 
             }
         }
+        .preferredColorScheme(.light)
         .ignoresSafeArea(edges: .all)
         .onAppear() {
+            print("userDoc is: \(appInfo.userDocId)")
+            //viewModel.userId = authentication.auth.currentUser?.uid
+            viewModel.repository.getUser(userId: appInfo.userId) { user in
+                viewModel.anyProjectsInDB(userDocId: user.docId)
+            }
+            
             //    viewModel.repository.anyProjectsInDatabase(completion: { (anyProjects) in
-            viewModel.anyProjectsInDB()
+            
             print("Hello: from headview")
+            
+            
+            
             //})
             
         }
@@ -65,8 +79,8 @@ struct ListOfProjectsView: View {
                         .font(.largeTitle)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 25)
-                    
-                    
+
+
                     Button(action: {
                         appInfo.activeSheet = .showProjectView
                         appInfo.showSheetView.toggle()
@@ -79,22 +93,10 @@ struct ListOfProjectsView: View {
                                 .foregroundColor(Color("teamcolor1"))
                                 .frame(maxWidth: .infinity, alignment: .trailing)
                         }
+
                         .frame(width: 100, height: 60)
                         .padding(.trailing, 25)
-                        .sheet(isPresented: $appInfo.showSheetView, content: {
-                            if appInfo.activeSheet == .showProjectView {
-                                CreateProjectView(isPresented: $appInfo.showSheetView, didAddProject: {
-                                    project in
-                                    print("hello: listview sheet")
-                                    //                viewModel.repository.projectsInDB = true
-                                    //                appInfo.showPlanTab = true
-                                    viewModel.getProjects()
-                                    appInfo.anyProjectsInDB()
-                                })
-                                .environmentObject(self.authentication)
-                            }
-                            
-                        })
+
                     })
                 }
                 .padding(.horizontal, 10)
@@ -116,17 +118,17 @@ struct ListOfProjectsView: View {
                 ScrollView {
                     ForEach(Array(self.viewModel.allProjects.enumerated()), id: \.1.id) { (index, name) in
                         HStack{
-                            
+
                             Button(action: {
-            
+
                                     self.selectedName = name.name
                                     appInfo.saveSelectedProject(project: name)
                                     appInfo.selectedTab = .plan
-                                    
-                                    
-                                
+
+
+
                             }) {
-                                
+
                                     VStack{
                                         Text(name.name)
                                             .font(.title2)
@@ -134,7 +136,7 @@ struct ListOfProjectsView: View {
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                             .padding(.leading, 10)
                                            // .padding(.bottom, -1)
-                                        
+
                                         ProgressBar(value: name.progressCount)
                                             .frame(height: 20)
                                             .padding(.leading, 10)
@@ -142,8 +144,8 @@ struct ListOfProjectsView: View {
                                     .padding(.leading, 10)
 
                             }
-                            
-                            
+
+
                             Image(systemName: "trash")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
@@ -163,16 +165,16 @@ struct ListOfProjectsView: View {
                                         message: Text("Are you sure you want to delete the project \(name.name)?"),
                                         primaryButton: .destructive(Text("Delete")){
                                             viewModel.allProjects.remove(at: index)
-                                            viewModel.deleteProject(docId: name.docId)
+                                            viewModel.deleteProject(docId: name.docId, userDocId: appInfo.userDocId)
                                             //mode.wrappedValue.dismiss()
                                         }, secondaryButton: .cancel()
-                                        
+
                                     )
-                                    
+
                                 }
                             //                            .animation(.spring())
                             //                            .listRowBackground(self.selectedName == name.name && isAnimated ? Color.gray : Color(UIColor.systemGroupedBackground))
-                            
+
                             //                            Button(action: {
                             //
                             //                            }) {
@@ -200,72 +202,50 @@ struct ListOfProjectsView: View {
                         .shadow(color: Color("shadowgray"), radius: 10)
                         .padding(.vertical, 10)
                         .padding(.leading, 10)
-                        
+
                     }
                     //.onDelete(perform: viewModel.deleteProject(at:))
                     //.listRowBackground(Color("backgroundgray"))
                     //                    .frame(maxWidth: .infinity, minHeight: 80)
                     //                    .cornerRadius(25)
                     //                    .padding(.vertical, 5)
-                    
-                    
+
+
                 }
-                //.environment(\.defaultMinListRowHeight, 50)
-                //.padding()
+                .environment(\.defaultMinListRowHeight, 50)
+                .padding()
             }
             .background(Color("backgroundgray"))
             .cornerRadius(25)
             .shadow(color: Color("backgroundgray"), radius: 10)
-            .padding(.horizontal)
             .padding(.top, -15)
             .padding(.bottom, 60)
             .padding (.trailing, 10)
-            
-            .onAppear{
-               
-            }
+           
             
             
         }
+        .sheet(isPresented: $appInfo.showSheetView, content: {
+            if appInfo.activeSheet == .showProjectView {
+                CreateProjectView(isPresented: $appInfo.showSheetView, didAddProject: {
+                    project in
+                    print("hello: listview sheet")
+                    //                viewModel.repository.projectsInDB = true
+                    //                appInfo.showPlanTab = true
+                    viewModel.getProjects(userDocId: appInfo.userDocId)
+                    appInfo.anyProjectsInDB()
+                })
+                .environmentObject(self.authentication)
+            }
+
+        })
         .background(Color("backgroundgray"))
         .navigationBarHidden(true)
-        
-        
-        //        .navigationBarItems(trailing: Button(action: {
-        //            appInfo.activeSheet = .showProjectView
-        //            appInfo.showSheetView.toggle()
-        //        }, label: {
-        //                    Image(systemName: "plus.rectangle.on.folder")
-        //                        .accentColor(Color("teamcolor1"))
-        //                        .font(.title2)
-        //        })
-        //        .padding(.top, 20)
-        //        )
-        
         .onAppear(){
-            
-            //            DispatchQueue.main.async { [self] in
-            viewModel.getProjects()
-            
-           
-            //                appInfo.showPlanTab = true
-            ///
-            //            }
-            
-            
-            //                print("hello: Listview")
-            //
-            //                print("Debug: from onAppear in listview \(viewModel.repository.projectsInDB)")
-            //
-            //
-            //            })
-            
-            ////            viewModel.repository.anyProjectsInDatabase(completion: { (anyProjects) in
-            ////                appInfo.showPlanTabBarItem = anyProjects
-            //                print("Debug: Calling from onAppear in ListOfProjectsView")
-            // //               viewModel.getProjects()
-            // //           })
-            //
+
+            viewModel.getProjects(userDocId: appInfo.userDocId)
+            print(appInfo.userDocId)
+
         }
     }
 }
@@ -324,6 +304,7 @@ struct NoProjectsView: View {
                 
             })
             .environmentObject(self.authentication)
+            .environmentObject(self.appInfo)
             
         })
         .navigationBarHidden(true)

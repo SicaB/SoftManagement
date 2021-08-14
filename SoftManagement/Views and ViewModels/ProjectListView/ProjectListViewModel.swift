@@ -10,11 +10,10 @@ import Combine
 
 class ProjectListViewModel: ObservableObject {
     
-    @EnvironmentObject var appInfo: AppInformation
     @Published var repository = ProjectRepository()
     @Published var projectsInDB = false
     @Published var lastAddedProject = Project(name: "", docId: "", progressCount: 0.0)
-    
+    @Published var userId = ""
     
     @Published var allProjects: [Project] = []
     @Published var projectDocIds = [String]()
@@ -32,18 +31,18 @@ class ProjectListViewModel: ObservableObject {
 
     }
     
-    func anyProjectsInDB() {
-            self.repository.anyProjectsInDatabase(completion: { (anyProjects) in
+    func anyProjectsInDB(userDocId: String) {
+            self.repository.anyProjectsInDatabase(userDocId: userDocId, completion: { (anyProjects) in
                 self.projectsInDB = anyProjects
                 self.repository.isLoading = false
-              
+
             })
     }
     
-    func getProjects() {
+    func getProjects(userDocId: String) {
             DispatchQueue.main.async { [self] in
             repository.isLoading = true
-                    self.repository.getAllProjects(completion: { (projects, docIDs) in
+                    self.repository.getAllProjects(userDocId: userDocId, completion: { (projects, docIDs) in
                         self.allProjects.removeAll()
                         self.allProjects.append(contentsOf: projects)
                    
@@ -73,12 +72,12 @@ class ProjectListViewModel: ObservableObject {
 
     }
     
-    func deleteProject(docId: String) {
+    func deleteProject(docId: String, userDocId: String) {
 
         DispatchQueue.main.async { [self] in
             repository.isLoading = true
-            repository.deleteProject(docId: docId)
-            anyProjectsInDB()
+            repository.deleteProject(userDocId: userDocId, docId: docId)
+            self.anyProjectsInDB(userDocId: userDocId)
         }
         
        

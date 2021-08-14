@@ -21,15 +21,15 @@ struct HomeScreenView: View {
         VStack{
                 VStack(){
                     
-                    ProjectNameOverview()
+                    ProjectNameOverview().environmentObject(self.authentication)
                     
                     ScrollView{
                         
                         VStack(){
                             
-                            TeamsHeadline()
+                            TeamsHeadline().environmentObject(self.authentication)
                             
-                            ListOfTeamsView(viewModel: viewModel)
+                            ListOfTeamsView(viewModel: viewModel).environmentObject(self.authentication)
 
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -64,24 +64,14 @@ struct ListOfTeamsView: View {
     @State private var tasksItems = [Task]()
     @State var uiTabarController: UITabBarController?
     
-    
-    //    List(MockData.projects) { project in
-    //            Text(project.name)
-    //        }
-    
-    //                List(items, children: \.items) { row in
-    
-    
-    
     var body: some View{
         
         VStack(){
             NavigationLink(
-                destination: TeamInfoView(), tag: 1, selection: $action){
+                destination: TeamInfoView().environmentObject(self.authentication), tag: 1, selection: $action){
                 
             }
-            
-            
+
             ForEach(appInfo.teams) { team in
                 
                 DisclosureGroup(
@@ -123,27 +113,30 @@ struct ListOfTeamsView: View {
             UITabBarController.tabBar.isHidden = false
                 uiTabarController = UITabBarController
         }
-        
+        .sheet(isPresented: $appInfo.showSheetView, content: {
+            if appInfo.activeSheet == .showTeamView {
+                CreateTeamView(isPresented: $appInfo.showSheetView, didAddTeam: {
+                    team in
+                    print("hello: team sheet")
+                    
+                    appInfo.getTeams(projectDocId: appInfo.selectedProject.docId)
+                    appInfo.anyProjectsInDB()
+                    
+                })
+                .environmentObject(self.authentication)
+            }
+            
+        })
+        .navigationBarHidden(true)
+        .preferredColorScheme(.light)
         .padding()
         .padding(.bottom, 80)
-        //.frame(maxWidth: .infinity, minHeight: 330, maxHeight: .infinity)
-        //.background(Color.white)
-        //.frame(alignment: .top)
-        //.cornerRadius(5)
-        //.padding(.horizontal, 10)
-        //.shadow(color: Color("shadowgray"), radius: 10)
         .onAppear(){
             appInfo.getTeams(projectDocId: appInfo.selectedProject.docId)
             viewModel.selectedProjectId = appInfo.selectedProject.docId
             appInfo.teamInfoViewIsOpen = false
             uiTabarController?.tabBar.isHidden = false
-            //viewModel.getTeams(projectDocId: appInfo.selectedProject.docId)
-            //print("from onappear in taskview: \(viewModel.teams)")
-//            for team in viewModel.teams  {
-//                print("from onappear in taskview: \(team)")
-//            }
-//
-//            appInfo.teams = viewModel.teams
+
         }
        
         
@@ -186,22 +179,7 @@ struct AddTeamView: View {
             }
             .frame(maxWidth: .infinity, minHeight: 40)
             .padding()
-            .sheet(isPresented: $appInfo.showSheetView, content: {
-                if appInfo.activeSheet == .showTeamView {
-                    CreateTeamView(isPresented: $appInfo.showSheetView, didAddTeam: {
-                        team in
-                        print("hello: team sheet")
-                        
-                        appInfo.getTeams(projectDocId: appInfo.selectedProject.docId)
-                        appInfo.anyProjectsInDB()
-                       // appInfo.teams = viewModel.teams
-                        
-                    })
-                    .environmentObject(self.authentication)
-                }
-                
-            })
-            .navigationBarHidden(true)
+
         })
         
     }

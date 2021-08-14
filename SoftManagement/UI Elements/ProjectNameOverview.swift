@@ -17,9 +17,7 @@ struct ProjectNameOverview: View {
             Text(appInfo.selectedProject.name)
                 .foregroundColor(Color.white)
                 .font(.title)
-                
-            
-            
+
             VStack(){
                 HStack(){
                     Text("Project status %")
@@ -48,12 +46,6 @@ struct ProjectNameOverview: View {
         }
         .frame(maxWidth: .infinity, maxHeight: 240)
         .background(Color("header"))
-      //  .cornerRadius(5)
-        //.padding(.horizontal, 15)
-        
-        //.edgesIgnoringSafeArea(.all)//  .shadow(radius: 10)
-        
-
 
     }
 }

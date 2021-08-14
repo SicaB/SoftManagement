@@ -4,18 +4,18 @@
 //
 //  Created by Sacha Behrend on 17/06/2021.
 //
-
-import SwiftUI
+import Foundation
 
 struct Task: Codable, Hashable, Identifiable {
-    var id = UUID().uuidString
-    var docId: String = ""
-    var title: String = ""
-    var description = ""
-    var workLoad = 0
-    var isDone = false
+    let id: String
+    var docId: String
+    var title: String
+    var description: String
+    var workLoad: Int
+    var isDone: Bool
     
-    init(docId: String, title: String, description: String, workLoad: Int, isDone: Bool) {
+    init(id: UUID = UUID(), docId: String, title: String, description: String, workLoad: Int, isDone: Bool) {
+        self.id = id.uuidString
         self.docId = docId
         self.title = title
         self.description = description

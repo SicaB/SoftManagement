@@ -11,6 +11,7 @@ import Introspect
 struct TeamInfoView: View {
     
     @EnvironmentObject var appInfo: AppInformation
+    @EnvironmentObject var authentication: Authentication
     @StateObject var viewModel = TeamInfoViewModel()
     @State var showingAlert = false
     @State var showingTaskAlert = false
@@ -23,23 +24,12 @@ struct TeamInfoView: View {
     @State private var isExpanded = false
     @State var uiTabarController: UITabBarController?
     
+
+    
     var body: some View {
         ZStack {
             VStack {
                 VStack(){
-                    
-//                    Image(systemName: "chevron.backward")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(width: 20, height: 20)
-//                        .frame(maxWidth: .infinity, alignment: .leading)
-//                        .padding()
-//                        .padding(.top, 40)
-//                        .foregroundColor(Color("lightgray"))
-//                        .onTapGesture {
-//                            mode.wrappedValue.dismiss()
-//
-//                        }
 
                     Text(appInfo.selectedProject.name)
                         .foregroundColor(Color.white)
@@ -91,7 +81,7 @@ struct TeamInfoView: View {
                                         .font(.title2),
                                     message: Text("Are you sure you want to delete the team \(viewModel.selectedTeam.name)?"),
                                     primaryButton: .destructive(Text("Delete")){
-                                        viewModel.deleteTeam()
+                                        viewModel.deleteTeam(userDocId: appInfo.userDocId)
                                         mode.wrappedValue.dismiss()
                                     }, secondaryButton: .cancel()
                                     
@@ -145,9 +135,6 @@ struct TeamInfoView: View {
                                 .frame(width: geometry.size.width/3, height: 80)
                                 .clipped()
                                 
-                                //.pickerStyle(WheelPickerStyle())
-                                
-                                
                                 Picker("", selection: $hours){
                                     ForEach(0..<24, id: \.self) { i in
                                         Text("\(i)").tag(i)
@@ -157,7 +144,6 @@ struct TeamInfoView: View {
                                 
                                 .frame(width: geometry.size.width/3, height: 80)
                                 .clipped()
-                                //.pickerStyle(WheelPickerStyle())
                                 Spacer()
                             }
                         }
@@ -168,8 +154,8 @@ struct TeamInfoView: View {
                             if viewModel.task.workLoad == 0 || viewModel.task.title.isEmpty {
                                 self.showingTaskAlert = true
                             } else {
-                                viewModel.saveTask()
-                                viewModel.getTasks()
+                                viewModel.saveTask(userDocId: appInfo.userDocId)
+                                viewModel.getTasks(userDocId: appInfo.userDocId)
 
                                 days = 0
                                 hours = 0
@@ -223,31 +209,28 @@ struct TeamInfoView: View {
                 }
                 
             }
+            .preferredColorScheme(.light)
             .introspectTabBarController { (UITabBarController) in
                 UITabBarController.tabBar.isHidden = true
                     uiTabarController = UITabBarController
                 }
                 .onAppear(){
+                viewModel.userDocId = appInfo.userDocId
                 viewModel.selectedProjectDocId = appInfo.selectedProject.docId
                 viewModel.selectedTeam = appInfo.selectedTeam
-                viewModel.getTasks()
+                viewModel.getTasks(userDocId: appInfo.userDocId)
                 print(appInfo.selectedTeam.docId)
+                    
         
 
             }
             .onDisappear(){
                 
             }
-            
         }
         .background(Color("backgroundgray"))
         .edgesIgnoringSafeArea(.all)
-       // .navigationBarHidden(true)
-        
-        
-        
-        
-        
+
     }
    
     

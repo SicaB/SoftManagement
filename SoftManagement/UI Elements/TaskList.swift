@@ -11,6 +11,7 @@ struct TaskList: View {
     
     @ObservedObject var viewModel: TeamInfoViewModel
     @EnvironmentObject var appInfo: AppInformation
+    @EnvironmentObject var authentication: Authentication
     @State private var madeChangesInTasksList = false
     
     var body: some View {
@@ -65,7 +66,7 @@ struct TaskList: View {
                             
                             
                             
-                        Text("\(task.workLoad) t.")
+                        Text("\(task.workLoad) h.")
                             .foregroundColor(Color("h2"))
                             .frame(maxWidth: 50, alignment: .trailing)
                             .padding(.trailing, 4)
@@ -83,7 +84,7 @@ struct TaskList: View {
                                     madeChangesInTasksList = true
                                     viewModel.allTasks[index].isDone = false
                                     viewModel.calculateWorkload()
-                                    viewModel.saveDoneWork()
+                                    viewModel.saveDoneWork(userDocId: appInfo.userDocId)
                                     
                                 }
                             } else {
@@ -96,7 +97,7 @@ struct TaskList: View {
                                         madeChangesInTasksList = true
                                         viewModel.allTasks[index].isDone = true
                                         viewModel.calculateWorkload()
-                                        viewModel.saveDoneWork()
+                                        viewModel.saveDoneWork(userDocId: appInfo.userDocId)
                                        
                                         
                                     }

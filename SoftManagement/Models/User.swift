@@ -9,16 +9,17 @@ import SwiftUI
 
 struct User: Codable, Identifiable {
     var id: String = UUID().uuidString
+    var docId = ""
     var name = ""
     var username = ""
     var email = ""
     var password = ""
     
-//    init(name: String, username: String, email: String, password: String) {
-//        self.name = name
-//        self.username = username
-//        self.email = email
-//        self.password = password
-//        
-//    }
+    init(docId: String) {
+        
+        self.docId = docId
+        
+
+    }
+
 }

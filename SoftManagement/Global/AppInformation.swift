@@ -14,11 +14,14 @@ class AppInformation: ObservableObject {
     @Published var showPlanTab = false
     @Published var showSheetView = false
     @Published var teamInfoViewIsOpen = false
-    @Published var activeSheet: ActiveSheet?
+    @Published var activeSheet: ActiveSheet = .none
     @Published var repository = ProjectRepository()
+    @Published var userId = ""
+    @Published var userDocId = ""
     @Published var selectedTeam = Team(name: "No Team Selected", docId: "", tasks: [], teamWorkloadInHours: 0, hoursOfDoneWork: 0, workDonePercentage: 0.0)
     @Published var teams: [Team] = []
     @Published var teamDocIds = [String]()
+    
     
     init() {
         repository.isLoading = false
@@ -31,16 +34,30 @@ class AppInformation: ObservableObject {
     }
     
     func anyProjectsInDB() {
-            self.repository.anyProjectsInDatabase(completion: { (anyProjects) in
-                self.showPlanTab = anyProjects
-               
-            })
+        repository.getUser(userId: userId) { user in
+            self.userDocId = user.docId
+            print("From anyProjectsInDB: docId is: \(self.userDocId)")
+            self.repository.anyProjectsInDatabase(userDocId: user.docId, completion: { (anyProjects) in
+                    self.showPlanTab = anyProjects
+                    //self.repository.isLoading = false
+
+                })
+        }
+        
+        
+    }
+    
+    func getUser(){
+        repository.getUser(userId: userId) { user in
+            self.userDocId = user.docId
+           
+        }
     }
 
     func getTeams(projectDocId: String) {
             DispatchQueue.main.async { [self] in
            
-                self.repository.getTeams(projectDocId: projectDocId, completion: { (team, docIDs) in
+                self.repository.getTeams(userDocId: userDocId, projectDocId: projectDocId, completion: { (team, docIDs) in
                 
                     self.teams.removeAll()
                     self.teams.append(contentsOf: team)
@@ -54,7 +71,7 @@ class AppInformation: ObservableObject {
                 })
                 
             for docId in self.teamDocIds {
-                    self.repository.getTasks(projectDocId: projectDocId, teamDocId: docId, completion: { (task, docIDs) in
+                    self.repository.getTasks(userDocId: userDocId, projectDocId: projectDocId, teamDocId: docId, completion: { (task, docIDs) in
                         
                         
                 })
@@ -80,7 +97,7 @@ class AppInformation: ObservableObject {
             selectedProject.progressCount = workDonePercent
         }
         
-        repository.updateProjectData(input: selectedProject, projectDocId: selectedProject.docId)
+        repository.updateProjectData(userDocId: userDocId, input: selectedProject, projectDocId: selectedProject.docId)
         repository.isLoading = false
     }
     
@@ -93,11 +110,12 @@ class AppInformation: ObservableObject {
             case plan
             case account
             case projects
+            
         }
     }
     
     enum ActiveSheet: Identifiable {
-        case showProjectView, showTeamView
+        case showProjectView, showTeamView, none
         
         var id: Int {
             hashValue

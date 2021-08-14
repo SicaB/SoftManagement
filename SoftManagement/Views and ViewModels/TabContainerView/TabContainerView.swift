@@ -11,6 +11,7 @@ struct TabContainerView: View {
     
     @StateObject var viewModel = TabContainerViewModel()
     @EnvironmentObject var appInfo: AppInformation
+    @EnvironmentObject var authentication: Authentication
     
     var body: some View {
         ZStack{
@@ -38,6 +39,12 @@ struct TabContainerView: View {
                     }
                     
                 }
+           .onAppear(){
+            appInfo.userId = authentication.auth.currentUser!.uid
+            appInfo.getUser()
+            
+           }
+           .environmentObject(self.authentication)
             }
         .accentColor(Color(.white))
         

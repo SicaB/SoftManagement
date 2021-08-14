@@ -31,6 +31,7 @@ struct CreateTeamView: View {
                                 .foregroundColor(Color("lightgray"))
                             
                             TextField("Team Name", text: $viewModel.team.name)
+                                .foregroundColor(Color("h1"))
                                 
                         }
                         
@@ -40,9 +41,12 @@ struct CreateTeamView: View {
                                 if viewModel.team.name.isEmpty{
                                     authentication.alertItem = AlertContext.invalidTeamName
                                 } else {
-                                    viewModel.saveTeam(input: viewModel.team, docId: appInfo.selectedProject.docId)
+                                    viewModel.saveTeam(input: viewModel.team, docId: appInfo.selectedProject.docId, userDocId: appInfo.userDocId)
+                                    
+                                    appInfo.showSheetView.toggle()
+                                    
 
-                                    isPresented.toggle()
+                                   
                                     self.didAddTeam(.init(true))
                                 }
 
@@ -62,7 +66,9 @@ struct CreateTeamView: View {
             }
             .navigationBarTitle("Create Team")
             .navigationBarItems(trailing: Button(action: {
-                isPresented.toggle()
+                appInfo.showSheetView.toggle()
+                
+                //isPresented.toggle()
             }, label: {
                 Image(systemName: "xmark.circle.fill")
                     .accentColor(Color("teamcolor1"))

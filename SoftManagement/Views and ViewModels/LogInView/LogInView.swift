@@ -16,11 +16,11 @@ struct LogInView: View {
     var body: some View {
         ZStack {
             if authentication.signedIn {
-                TabContainerView()
+                TabContainerView().environmentObject(self.authentication)
 
             }
             else {
-                LogInScreenView()
+                LogInScreenView().environmentObject(self.authentication)
                     
             }
         }
@@ -125,7 +125,7 @@ struct LogInScreenView: View {
                         Text("Don't have an account?")
                             .foregroundColor(Color("h1"))
                         NavigationLink(
-                            destination: SignUpView(),
+                            destination: SignUpView().environmentObject(self.authentication),
                             label: {
                                 SoftBtn(title: "SIGN UP", textColor: Color("teamcolor1"), backgroundColor: .white, opacity: 0.95)
                                 
@@ -144,9 +144,7 @@ struct LogInScreenView: View {
                 
             }
         }
-        
-            
-        
+
         }
     
 }

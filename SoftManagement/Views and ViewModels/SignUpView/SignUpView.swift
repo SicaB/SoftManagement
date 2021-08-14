@@ -18,13 +18,11 @@ struct SignUpView: View {
     var body: some View {
         ZStack{
             VStack() {
-
                 Text("Personal Info")
                     .foregroundColor(Color(.white))
                     .padding(.top, 160)
                     .padding(.leading, 25)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                
                 VStack() {
 
                         VStack(alignment: .leading, spacing: 18){
@@ -33,21 +31,15 @@ struct SignUpView: View {
                                 if authentication.user.name.isEmpty {
                                     Text(placeholder[0])
                                         .foregroundColor(Color("grayedouttext"))
-                                    
-
                                 }
                                 TextField("", text: $authentication.user.name)
                                     .disableAutocorrection(true)
                                     .accentColor(.white)
-                                  
-                                
-                                
                             }
                             VStack{
                                 Divider().background(Color("h2"))
                             }
                             
-
                             ZStack(alignment: .leading){
                                 if authentication.user.username.isEmpty {
                                     Text(placeholder[1])
@@ -97,6 +89,7 @@ struct SignUpView: View {
                             
                             Button {
                                 authentication.signUp(name: authentication.user.name, username: authentication.user.username, email: authentication.user.email, password: authentication.user.password)
+                                    
                             } label: {
                                 Text("Save Account")
                                     .foregroundColor(Color("teamcolor1"))
@@ -104,23 +97,13 @@ struct SignUpView: View {
                             }
                             
                         }
-                        //.padding(.vertical, 10)
-                        
-                        
-                    
-                    
-                    
-                    
+
                 }
                 .padding()
                 .background(Color("card"))
                 .cornerRadius(15)
                 .shadow(color: Color("backgroundgray"), radius: 10)
                 .padding(.horizontal)
-                
-                
-                
-                //.frame(maxHeight: 280)
                 .foregroundColor(Color("h1"))
 
                 Spacer(minLength: 35)
@@ -139,17 +122,8 @@ struct SignUpView: View {
                         
                         Spacer()
                     }
-                    
-                    
-                    
-                    
-                    
 
-                
- 
             }
-            
-            
             .alert(item: $authentication.alertItem) { alertItem in
                 Alert(title: Text(alertItem.title), message: Text(alertItem.message), dismissButton: alertItem.dismissButton)
                 
@@ -158,7 +132,6 @@ struct SignUpView: View {
         .navigationBarTitle("Sign Up")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("backgroundgray"))
-        //.background(Color("backgroundgray"))
         .edgesIgnoringSafeArea(.bottom)
         .edgesIgnoringSafeArea(.top)
            
@@ -174,7 +147,6 @@ struct Placeholders {
     static let placeholders = [name, username, email, password]
     
 }
-
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {

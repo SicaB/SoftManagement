@@ -27,19 +27,8 @@ struct DisclosureList: View {
             
             
         }
-        
-            
-      
-            
 
- 
-        
-        
-        
-       
-          
-            
-        }
+     }
 
         
     }
