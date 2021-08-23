@@ -30,8 +30,8 @@ struct TaskMockData {
     static let eksample2 = "Title text needs to be centeret"
     static let eksample3 = "Movie icons color"
     static let eksample4 = "home button too small"
-    
+
     static let eks = [eksample1, eksample2, eksample3, eksample4]
-    
+
 }
 

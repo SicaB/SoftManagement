@@ -12,6 +12,7 @@ struct TabContainerView: View {
     @StateObject var viewModel = TabContainerViewModel()
     @EnvironmentObject var appInfo: AppInformation
     @EnvironmentObject var authentication: Authentication
+    @State private var uiTabarController: UITabBarController?
     
     var body: some View {
         ZStack{
@@ -46,6 +47,7 @@ struct TabContainerView: View {
            }
            .environmentObject(self.authentication)
             }
+        
         .accentColor(Color(.white))
         
         
@@ -73,18 +75,14 @@ struct TabContainerView: View {
             NavigationView{
             HomeScreenView()
             }
-           
-            //.transition(.slide)
-        case .account:
-            NavigationView{
-            AccountView()
-            }
-            
         case .projects:
             NavigationView{
             ProjectListView()
             }
-
+        case .account:
+            NavigationView{
+            AccountView()
+            }
         }
     }
 }

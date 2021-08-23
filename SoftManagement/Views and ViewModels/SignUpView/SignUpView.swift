@@ -7,13 +7,36 @@
 
 import SwiftUI
 
+//struct SignUpView: View {
+//
+//    @EnvironmentObject var authentication: Authentication
+//    @StateObject var viewModel = SignUpViewModel()
+//
+//
+//    var body: some View {
+//        ZStack{
+//            if viewModel.signedIn || authentication.signedIn{
+//                TabContainerView()
+//            } else {
+//                SignUpViewScreen(viewModel: viewModel)
+//            }
+//        }
+//        .navigationViewStyle(StackNavigationViewStyle())
+//
+//        .onAppear() {
+//            authentication.signedIn = authentication.isSignedIn
+//            print("heeieiilllooo")
+//        }
+//
+//
+//    }
+//}
+
 struct SignUpView: View {
-    
-    @EnvironmentObject var authentication: Authentication
-    @StateObject var viewModel = SignUpViewModel()
     @Environment(\.presentationMode) var mode
-    
-    var placeholder : [String] = Placeholders.placeholders
+    @StateObject var viewModel = SignUpViewModel()
+    @EnvironmentObject var authentication: Authentication
+    @EnvironmentObject var appInfo: AppInformation
     
     var body: some View {
         ZStack{
@@ -28,11 +51,11 @@ struct SignUpView: View {
                         VStack(alignment: .leading, spacing: 18){
                             
                             ZStack(alignment: .leading){
-                                if authentication.user.name.isEmpty {
-                                    Text(placeholder[0])
+                                if viewModel.user.name.isEmpty {
+                                    Text(viewModel.placeholder[0])
                                         .foregroundColor(Color("grayedouttext"))
                                 }
-                                TextField("", text: $authentication.user.name)
+                                TextField("", text: $viewModel.user.name)
                                     .disableAutocorrection(true)
                                     .accentColor(.white)
                             }
@@ -41,11 +64,11 @@ struct SignUpView: View {
                             }
                             
                             ZStack(alignment: .leading){
-                                if authentication.user.username.isEmpty {
-                                    Text(placeholder[1])
+                                if viewModel.user.username.isEmpty {
+                                    Text(viewModel.placeholder[1])
                                             .foregroundColor(Color("grayedouttext"))
                                 }
-                                TextField("", text: $authentication.user.username)
+                                TextField("", text: $viewModel.user.username)
                                     .disableAutocorrection(true)
                                     .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                                     .accentColor(.white)
@@ -56,11 +79,11 @@ struct SignUpView: View {
                             }
                            
                             ZStack(alignment: .leading){
-                                if authentication.user.email.isEmpty {
-                                    Text(placeholder[2])
+                                if viewModel.user.email.isEmpty {
+                                    Text(viewModel.placeholder[2])
                                             .foregroundColor(Color("grayedouttext"))
                                 }
-                                TextField("", text: $authentication.user.email)
+                                TextField("", text: $viewModel.user.email)
                                     .keyboardType(.emailAddress)
                                     .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                                     .disableAutocorrection(true)
@@ -72,11 +95,11 @@ struct SignUpView: View {
                             }
 
                             ZStack(alignment: .leading){
-                                if authentication.user.password.isEmpty {
-                                    Text(placeholder[3])
+                                if viewModel.user.password.isEmpty {
+                                    Text(viewModel.placeholder[3])
                                             .foregroundColor(Color("grayedouttext"))
                                 }
-                                SecureField("", text: $authentication.user.password)
+                                SecureField("", text: $viewModel.user.password)
                                     .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                                     .disableAutocorrection(true)
                                     .accentColor(.white)
@@ -88,8 +111,11 @@ struct SignUpView: View {
                             
                             
                             Button {
-                                authentication.signUp(name: authentication.user.name, username: authentication.user.username, email: authentication.user.email, password: authentication.user.password)
-                                    
+                                viewModel.send(action: .signup)
+//                                if viewModel.isValidForm {
+//                                    mode.wrappedValue.dismiss()
+//                                    
+//                                }
                             } label: {
                                 Text("Save Account")
                                     .foregroundColor(Color("teamcolor1"))
@@ -124,29 +150,29 @@ struct SignUpView: View {
                     }
 
             }
-            .alert(item: $authentication.alertItem) { alertItem in
+            .alert(item: $viewModel.alertItem) { alertItem in
                 Alert(title: Text(alertItem.title), message: Text(alertItem.message), dismissButton: alertItem.dismissButton)
                 
             }
+            .onChange(of: viewModel.signedIn) { newValue in
+                appInfo.signedIn = newValue
+            }
+            .onChange(of: viewModel.userId) { newValue in
+                appInfo.userId = newValue
+            }
+            
+        }
+        .onChange(of: viewModel.signedIn) { newValue in
+            appInfo.signedIn = newValue
         }
         .navigationBarTitle("Sign Up")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("backgroundgray"))
         .edgesIgnoringSafeArea(.bottom)
         .edgesIgnoringSafeArea(.top)
-           
     }
 }
 
-struct Placeholders {
-    static let name = "Name"
-    static let username = "Username"
-    static let email = "Email"
-    static let password = "Password"
-    
-    static let placeholders = [name, username, email, password]
-    
-}
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {

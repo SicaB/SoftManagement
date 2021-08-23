@@ -31,7 +31,7 @@ struct CreateTeamView: View {
                                 .foregroundColor(Color("lightgray"))
                             
                             TextField("Team Name", text: $viewModel.team.name)
-                                .foregroundColor(Color("h1"))
+                                .accentColor(Color("h1"))
                                 
                         }
                         
@@ -39,14 +39,12 @@ struct CreateTeamView: View {
                             // NavigationLink(destination: HomeScreenView()){
                             Button {
                                 if viewModel.team.name.isEmpty{
-                                    authentication.alertItem = AlertContext.invalidTeamName
+                                    appInfo.alertItem = AlertContext.invalidTeamName
                                 } else {
                                     viewModel.saveTeam(input: viewModel.team, docId: appInfo.selectedProject.docId, userDocId: appInfo.userDocId)
                                     
                                     appInfo.showSheetView.toggle()
-                                    
 
-                                   
                                     self.didAddTeam(.init(true))
                                 }
 
@@ -76,7 +74,7 @@ struct CreateTeamView: View {
             })
             .padding(.top, 20)
         )
-            .alert(item: $authentication.alertItem) { alertItem in
+            .alert(item: $appInfo.alertItem) { alertItem in
                 Alert(title: Text(alertItem.title), message: Text(alertItem.message), dismissButton: alertItem.dismissButton)
             }
             

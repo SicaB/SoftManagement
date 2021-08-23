@@ -26,7 +26,7 @@ struct CreateProjectView: View {
                         Section(header: Text("Project Information")) {
                             TextField("Project Name", text: $viewModel.project.name)
                                 .disableAutocorrection(true)
-                                .foregroundColor(Color("h1"))
+                                .accentColor(Color("h1"))
                         }
                         Section(header: Text("Dates")) {
                             
@@ -52,16 +52,14 @@ struct CreateProjectView: View {
                            // NavigationLink(destination: HomeScreenView()){
                                 Button {
                                     if viewModel.project.name.isEmpty {
-                                        authentication.alertItem = AlertContext.invalidProjectName
+                                        appInfo.alertItem = AlertContext.invalidProjectName
                                     } else {
                                         if viewModel.project.startDate > viewModel.project.deadLine {
-                                            authentication.alertItem = AlertContext.invalidTimeline
+                                            appInfo.alertItem = AlertContext.invalidTimeline
                                         } else {
                                             viewModel.saveProject(input: viewModel.project, userDocId: appInfo.userDocId)
                                             
                                             appInfo.showSheetView.toggle()
-                                            
-                                            
                                             self.didAddProject(.init(true))
                                         }
                                     
@@ -85,8 +83,6 @@ struct CreateProjectView: View {
             .navigationBarTitle("Create Project")
             .navigationBarItems(trailing: Button(action: {
                 appInfo.showSheetView.toggle()
-                
-                //isPresented.toggle()
             }, label: {
                 Image(systemName: "xmark.circle.fill")
                     .accentColor(Color("teamcolor1"))
@@ -95,7 +91,7 @@ struct CreateProjectView: View {
             .padding(.top, 20)
             
             )
-            .alert(item: $authentication.alertItem) { alertItem in
+            .alert(item: $appInfo.alertItem) { alertItem in
                 Alert(title: Text(alertItem.title), message: Text(alertItem.message), dismissButton: alertItem.dismissButton)
             }
             

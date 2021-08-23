@@ -17,9 +17,7 @@ struct SoftManagementApp: App {
     
     var body: some Scene {
         WindowGroup {
-            
-            
-            
+
             let authentication = Authentication()
             let appInfo = AppInformation()
             
@@ -27,10 +25,7 @@ struct SoftManagementApp: App {
                 .environmentObject(authentication)
                 .environmentObject(appInfo)
                 .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
-                
-        
-                
-                
+  
         }
     }
 }

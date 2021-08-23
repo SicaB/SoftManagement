@@ -11,8 +11,6 @@ struct TaskList: View {
     
     @ObservedObject var viewModel: TeamInfoViewModel
     @EnvironmentObject var appInfo: AppInformation
-    @EnvironmentObject var authentication: Authentication
-    @State private var madeChangesInTasksList = false
     
     var body: some View {
         HStack {
@@ -58,22 +56,14 @@ struct TaskList: View {
         VStack{
             List {
                 ForEach(Array(self.viewModel.allTasks.enumerated()), id: \.1.id) { (index, task) in
-                    
                     HStack{
                         Text(task.title)
                             .foregroundColor(Color("h1"))
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            
-                            
                         Text("\(task.workLoad) h.")
                             .foregroundColor(Color("h2"))
                             .frame(maxWidth: 50, alignment: .trailing)
                             .padding(.trailing, 4)
-                            
-                         
- 
-                        
                         if task.isDone {
                             Image(systemName: "checkmark.circle.fill")
                                 .resizable()
@@ -81,11 +71,9 @@ struct TaskList: View {
                                 .frame(width: 25, height: 25, alignment: .trailing)
                                 .foregroundColor(Color("checkgreen"))
                                 .onTapGesture {
-                                    madeChangesInTasksList = true
                                     viewModel.allTasks[index].isDone = false
                                     viewModel.calculateWorkload()
                                     viewModel.saveDoneWork(userDocId: appInfo.userDocId)
-                                    
                                 }
                             } else {
                                 Image(systemName: "circle")
@@ -94,27 +82,16 @@ struct TaskList: View {
                                     .frame(width: 25, height: 25, alignment: .trailing)
                                     .foregroundColor(Color("grayedouttext"))
                                     .onTapGesture {
-                                        madeChangesInTasksList = true
                                         viewModel.allTasks[index].isDone = true
                                         viewModel.calculateWorkload()
                                         viewModel.saveDoneWork(userDocId: appInfo.userDocId)
-                                       
-                                        
                                     }
-                                
                             }
-                            
-                        
-                        
                     }
-
                 }
                 .onDelete(perform: viewModel.deleteTask(at:))
                 .listRowBackground(Color("card"))
-                
             }
-            
-            
         }
         .padding()
         .background(Color("card"))

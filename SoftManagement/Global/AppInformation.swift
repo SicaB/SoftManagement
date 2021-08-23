@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
-class AppInformation: ObservableObject {
+final class AppInformation: ObservableObject {
    
     @Published var selectedProject = Project(name: "", docId: "", progressCount: 0.0)
     @Published var selectedTab: TabItem.TabItemType = .projects
@@ -21,7 +22,14 @@ class AppInformation: ObservableObject {
     @Published var selectedTeam = Team(name: "No Team Selected", docId: "", tasks: [], teamWorkloadInHours: 0, hoursOfDoneWork: 0, workDonePercentage: 0.0)
     @Published var teams: [Team] = []
     @Published var teamDocIds = [String]()
+    @Published var signedIn = false
+    @Published var alertItem : AlertItem?
     
+    let auth = Auth.auth()
+    
+    var isSignedIn: Bool {
+        return auth.currentUser != nil
+    }
     
     init() {
         repository.isLoading = false
@@ -55,30 +63,19 @@ class AppInformation: ObservableObject {
     }
 
     func getTeams(projectDocId: String) {
-            DispatchQueue.main.async { [self] in
-           
                 self.repository.getTeams(userDocId: userDocId, projectDocId: projectDocId, completion: { (team, docIDs) in
-                
                     self.teams.removeAll()
                     self.teams.append(contentsOf: team)
-                    
                     print("getTeams Called")
                     self.teamDocIds.removeAll()
                     self.teamDocIds.append(contentsOf: docIDs)
-                   
-                    calculateProjectStatus()
-                     
+                    self.calculateProjectStatus()
                 })
                 
             for docId in self.teamDocIds {
                     self.repository.getTasks(userDocId: userDocId, projectDocId: projectDocId, teamDocId: docId, completion: { (task, docIDs) in
-                        
-                        
                 })
-    
             }
-        }
-
     }
     
     func calculateProjectStatus() {
@@ -108,9 +105,8 @@ class AppInformation: ObservableObject {
         
         enum TabItemType {
             case plan
-            case account
             case projects
-            
+            case account
         }
     }
     

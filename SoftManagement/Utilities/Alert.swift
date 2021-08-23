@@ -32,7 +32,7 @@ struct AlertContext {
     static let invalidLogin = AlertItem(title: "Invalid Login",
                                     message: "Wrong Email or password", dismissButton: .default(Text("OK")))
     
-    static let invalidEmailEnteredForReset = AlertItem(title: "Invalid Email",
+    static let invalidEmailForReset = AlertItem(title: "Invalid Email",
                                         message: "We could not find the email in the database. Please make sure the email is correct!", dismissButton:
                                             .default(Text("OK")))
     

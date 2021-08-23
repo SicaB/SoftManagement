@@ -2,7 +2,6 @@
 //  LoginViewModelTest.swift
 //  SoftManagementTests
 //
-//  Created by Sacha Behrend on 02/08/2021.
 //
 
 import XCTest
@@ -20,6 +19,10 @@ class TaskTest: XCTestCase {
         XCTAssertEqual("Hello", task.title)
         XCTAssertEqual(2, task.workLoad)
         XCTAssertFalse(task.isDone)
+    }
+    
+    func testGetTask(){
+        
     }
 
 }

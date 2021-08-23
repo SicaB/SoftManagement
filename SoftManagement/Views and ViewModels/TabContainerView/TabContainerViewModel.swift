@@ -10,31 +10,25 @@ import SwiftUI
 
 final class TabContainerViewModel: ObservableObject {
     
-    @Published var repository = ProjectRepository()
+   // @Published var repository = ProjectRepository()
     @Published var showPlanTab = false
     
     init() {
         UITabBar.appearance().barTintColor = UIColor.black
     }
-    
-    let tabItemsNoProjects = [AppInformation.TabItem(imageName: "person", title: "Account", type: .account),
-                              .init(imageName: "doc.text.magnifyingglass", title: "Projects", type: .projects)
+    let tabItemsNoProjects = [AppInformation.TabItem(imageName: "doc.text.magnifyingglass", title: "Projects", type: .projects),
+                              .init(imageName: "person", title: "Account", type: .account)
     ]
-    
     let tabItems = [
         AppInformation.TabItem(imageName: "house", title: "Plan", type: .plan),
-        .init(imageName: "person", title: "Account", type: .account),
-        .init(imageName: "doc.text.magnifyingglass", title: "Projects", type: .projects)
+        .init(imageName: "doc.text.magnifyingglass", title: "Projects", type: .projects),
+        .init(imageName: "person", title: "Account", type: .account)
     ]
-    
-    func anyProjectsInDB(userDocId: String) {
-        self.repository.anyProjectsInDatabase(userDocId: userDocId, completion: { (anyProjects) in
-                self.showPlanTab = anyProjects
-               
-            })
-    }
-    
-
+//    func anyProjectsInDB(userDocId: String) {
+//        self.repository.anyProjectsInDatabase(userDocId: userDocId, completion: { (anyProjects) in
+//                self.showPlanTab = anyProjects
+//            })
+//    }
 }
 
 

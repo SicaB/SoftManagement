@@ -11,22 +11,26 @@ struct LogInView: View {
     
     @EnvironmentObject var authentication: Authentication
     @StateObject var viewModel = LogInViewModel()
-    @State var alertItem: AlertItem?
+    @State private var alertItem: AlertItem?
+    @EnvironmentObject var appInfo: AppInformation
     
     var body: some View {
         ZStack {
-            if authentication.signedIn {
-                TabContainerView().environmentObject(self.authentication)
+            if appInfo.signedIn {
+                TabContainerView()
 
             }
             else {
-                LogInScreenView().environmentObject(self.authentication)
-                    
+                LogInScreenView()
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear() {
-            authentication.signedIn = authentication.isSignedIn
+            appInfo.signedIn = appInfo.isSignedIn
+            print("heeieiilllooo")
+        }
+        .onChange(of: viewModel.signedIn) { newValue in
+            appInfo.signedIn = newValue
         }
     }
 }
@@ -35,20 +39,17 @@ struct LogInScreenView: View {
     
     @EnvironmentObject var authentication: Authentication
     @ObservedObject var viewModel = LogInViewModel()
-    
-    var usernamePlaceholder = "Email"
-    var passwordPlaceholder = "Password"
+    @EnvironmentObject var appInfo: AppInformation
     
     var body: some View {
         NavigationView{
             ZStack() {
-                //BackgroundColor()
+                //Background
                 BackgroundImage(image: "signup")
-                    .navigationBarHidden(true)
                 
                 VStack(alignment: .center) {
                     Spacer().frame(height: 85)
-                    
+       
                     Logo()
                     
                     Spacer().frame(height: 140)
@@ -58,12 +59,12 @@ struct LogInScreenView: View {
                         // Email Textfield
                         
                         ZStack (alignment: .leading){
-                            if authentication.user.email.isEmpty { Text(usernamePlaceholder)
+                            if viewModel.user.email.isEmpty { Text(viewModel.usernamePlaceholder)
                                 .foregroundColor(Color("lightgray"))
                                 .padding()
                                 .font(.system(size: 18, weight: .medium, design: .default))
                             }
-                            TextField("", text: $authentication.user.email)
+                            TextField("", text: $viewModel.user.email)
                                 .padding()
                                 .frame(width: 280, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                 .overlay(
@@ -82,12 +83,12 @@ struct LogInScreenView: View {
                         
                         // Secure Textfield
                         ZStack (alignment: .leading){
-                            if authentication.user.password.isEmpty { Text(passwordPlaceholder)
+                            if viewModel.user.password.isEmpty { Text(viewModel.passwordPlaceholder)
                                 .foregroundColor(Color("lightgray"))
                                 .padding()
                                 .font(.system(size: 18, weight: .medium, design: .default))
                             }
-                            SecureField("", text: $authentication.user.password)
+                            SecureField("", text: $viewModel.user.password)
                                 .padding()
                                 .ignoresSafeArea(/*@START_MENU_TOKEN@*/.keyboard/*@END_MENU_TOKEN@*/, edges: /*@START_MENU_TOKEN@*/.bottom/*@END_MENU_TOKEN@*/)
                                 .frame(width: 280, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -102,7 +103,8 @@ struct LogInScreenView: View {
                         }
                         
                         Button {
-                            authentication.forgotPassword(email: authentication.user.email)
+                            viewModel.send(action: .forgotPassword)
+//                            authentication.forgotPassword(email: authentication.user.email)
                         } label: {
                             Text("Forgot Password?")
                                 .foregroundColor(Color("teamcolor1"))
@@ -111,7 +113,7 @@ struct LogInScreenView: View {
                 
                         // Navigation
                         Button {
-                            authentication.logIn(userEmail: authentication.user.email, userPassword: authentication.user.password)
+                            viewModel.send(action: .login)
                         }
                         label: {
                             SoftBtn(title: "LOG IN", textColor: .white, backgroundColor: Color("teamcolor1"), opacity: 0.8)
@@ -125,25 +127,34 @@ struct LogInScreenView: View {
                         Text("Don't have an account?")
                             .foregroundColor(Color("h1"))
                         NavigationLink(
-                            destination: SignUpView().environmentObject(self.authentication),
+                            destination: SignUpView(),
                             label: {
                                 SoftBtn(title: "SIGN UP", textColor: Color("teamcolor1"), backgroundColor: .white, opacity: 0.95)
                                 
                             })
-                    }.padding(.top, 20)
+                    }
+                    .padding(.top, 20)
                     
                     Spacer()
                 }
             }
+            .onChange(of: viewModel.signedIn) { newValue in
+                appInfo.signedIn = newValue
+            }
+            .onChange(of: viewModel.userId) { newValue in
+                appInfo.userId = newValue
+            }
+            .navigationBarHidden(true)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color("backgroundgray"))
             .ignoresSafeArea(edges: .all)
-            .alert(item: $authentication.alertItem) { alertItem in
+            .alert(item: $viewModel.alertItem) { alertItem in
                 Alert(title: Text(alertItem.title), message: Text(alertItem.message), dismissButton: alertItem.dismissButton)
                     
                 
             }
         }
+        .accentColor(Color("teamcolor1"))
 
         }
     

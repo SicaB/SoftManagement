@@ -20,7 +20,6 @@ struct TeamCard: View {
                 .foregroundColor(Color.white)
                 .clipShape(Circle())
                 .background(Circle().fill(Color("teamcolor1")))
-            
             VStack{
                 Text(title)
                     .font(.title3)
@@ -33,9 +32,7 @@ struct TeamCard: View {
                     .frame(height: 20)
                     .padding(.horizontal, 8)
             }
-            
         }
-        
     }
 }
 

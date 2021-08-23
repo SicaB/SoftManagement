@@ -12,7 +12,9 @@ final class CreateProjectViewModel: ObservableObject {
     @Published var repository = ProjectRepository()
     @Published var project = Project(name: "", docId: "", progressCount: 0.0)
     
-
+    init() {
+        UINavigationBar.appearance().backgroundColor = .clear
+    }
 
     
     func saveProject(input: Project, userDocId: String){

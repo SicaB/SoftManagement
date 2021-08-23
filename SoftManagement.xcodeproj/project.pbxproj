@@ -13,12 +13,15 @@
 		990785C826A6EDDD00314E02 /* TaskInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990785C726A6EDDC00314E02 /* TaskInformation.swift */; };
 		990785CB26A6F0CC00314E02 /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990785CA26A6F0CC00314E02 /* TaskList.swift */; };
 		9941C10A26B7E32100FB7E67 /* SoftManagementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9941C10926B7E32100FB7E67 /* SoftManagementTests.swift */; };
-		9941C11226B80E4200FB7E67 /* ProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9941C11126B80E4200FB7E67 /* ProjectTests.swift */; };
+		9941C11226B80E4200FB7E67 /* TaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9941C11126B80E4200FB7E67 /* TaskTests.swift */; };
 		9953A8842670EECB004AE7AC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9953A8832670EECB004AE7AC /* SignUpView.swift */; };
 		99638A1A269ED9CF0037519B /* TeamInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99638A19269ED9CF0037519B /* TeamInfoView.swift */; };
 		99638A1C269ED9E50037519B /* TeamInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99638A1B269ED9E50037519B /* TeamInfoViewModel.swift */; };
 		99638A1E269F78D30037519B /* PlusImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99638A1D269F78D20037519B /* PlusImage.swift */; };
 		99638A21269F7D2F0037519B /* TeamCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99638A20269F7D2F0037519B /* TeamCard.swift */; };
+		9970F41C26CE48120080912B /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9970F41B26CE48120080912B /* AuthenticationTests.swift */; };
+		9970F41E26CE48E80080912B /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9970F41D26CE48E80080912B /* MockAuthService.swift */; };
+		9970F42026CE6F970080912B /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9970F41F26CE6F970080912B /* AccountViewModel.swift */; };
 		99761324269B2F5900AF1AEB /* CreateTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99761323269B2F5900AF1AEB /* CreateTeamView.swift */; };
 		99761326269B2FFE00AF1AEB /* CreateTeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99761325269B2FFE00AF1AEB /* CreateTeamViewModel.swift */; };
 		997AA0A7266EBCC00093EDBB /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997AA0A6266EBCC00093EDBB /* LogInViewModel.swift */; };
@@ -74,12 +77,15 @@
 		9941C10726B7E32100FB7E67 /* SoftManagementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoftManagementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9941C10926B7E32100FB7E67 /* SoftManagementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftManagementTests.swift; sourceTree = "<group>"; };
 		9941C10B26B7E32100FB7E67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9941C11126B80E4200FB7E67 /* ProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTests.swift; sourceTree = "<group>"; };
+		9941C11126B80E4200FB7E67 /* TaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTests.swift; sourceTree = "<group>"; };
 		9953A8832670EECB004AE7AC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		99638A19269ED9CF0037519B /* TeamInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoView.swift; sourceTree = "<group>"; };
 		99638A1B269ED9E50037519B /* TeamInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoViewModel.swift; sourceTree = "<group>"; };
 		99638A1D269F78D20037519B /* PlusImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusImage.swift; sourceTree = "<group>"; };
 		99638A20269F7D2F0037519B /* TeamCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCard.swift; sourceTree = "<group>"; };
+		9970F41B26CE48120080912B /* AuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
+		9970F41D26CE48E80080912B /* MockAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
+		9970F41F26CE6F970080912B /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		99761323269B2F5900AF1AEB /* CreateTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamView.swift; sourceTree = "<group>"; };
 		99761325269B2FFE00AF1AEB /* CreateTeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamViewModel.swift; sourceTree = "<group>"; };
 		997AA0A6266EBCC00093EDBB /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
@@ -142,9 +148,46 @@
 			children = (
 				9941C10926B7E32100FB7E67 /* SoftManagementTests.swift */,
 				9941C10B26B7E32100FB7E67 /* Info.plist */,
-				9941C11126B80E4200FB7E67 /* ProjectTests.swift */,
+				9941C11126B80E4200FB7E67 /* TaskTests.swift */,
+				9970F41B26CE48120080912B /* AuthenticationTests.swift */,
+				9970F41D26CE48E80080912B /* MockAuthService.swift */,
 			);
 			path = SoftManagementTests;
+			sourceTree = "<group>";
+		};
+		9941C11826C939BE00FB7E67 /* Team Elements */ = {
+			isa = PBXGroup;
+			children = (
+				990785C326A1FB0200314E02 /* DisclosureList.swift */,
+				990785BF26A1860B00314E02 /* TeamsHeadline.swift */,
+				99638A20269F7D2F0037519B /* TeamCard.swift */,
+			);
+			path = "Team Elements";
+			sourceTree = "<group>";
+		};
+		9941C11926C939E800FB7E67 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				99638A1D269F78D20037519B /* PlusImage.swift */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		9941C11A26C939FE00FB7E67 /* Task Elements */ = {
+			isa = PBXGroup;
+			children = (
+				990785CA26A6F0CC00314E02 /* TaskList.swift */,
+				990785C726A6EDDC00314E02 /* TaskInformation.swift */,
+			);
+			path = "Task Elements";
+			sourceTree = "<group>";
+		};
+		9941C11B26C93A2600FB7E67 /* Project Elements */ = {
+			isa = PBXGroup;
+			children = (
+				990785BB26A1820A00314E02 /* ProjectNameOverview.swift */,
+			);
+			path = "Project Elements";
 			sourceTree = "<group>";
 		};
 		9953A882266F5606004AE7AC /* Backgrounds and logo */ = {
@@ -292,11 +335,11 @@
 		99D2A79C265BB33400AE2BE1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				997AA0A3266EAB5D0093EDBB /* Firebase Auth */,
 				99A719A926778CB5009FF1D6 /* User.swift */,
 				99A719B7267B409D009FF1D6 /* Project.swift */,
 				99A719B9267B40AE009FF1D6 /* Task.swift */,
 				99A719C4267D1F16009FF1D6 /* Team.swift */,
-				997AA0A3266EAB5D0093EDBB /* Firebase Auth */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -313,16 +356,13 @@
 		99D2A7A5266E29DE00AE2BE1 /* UI Elements */ = {
 			isa = PBXGroup;
 			children = (
+				9941C11B26C93A2600FB7E67 /* Project Elements */,
+				9941C11A26C939FE00FB7E67 /* Task Elements */,
+				9941C11926C939E800FB7E67 /* Images */,
+				9941C11826C939BE00FB7E67 /* Team Elements */,
 				9953A882266F5606004AE7AC /* Backgrounds and logo */,
 				99D2A7AF266E49B900AE2BE1 /* Buttons */,
 				99A719CE26808C85009FF1D6 /* ProgressBar.swift */,
-				99638A1D269F78D20037519B /* PlusImage.swift */,
-				99638A20269F7D2F0037519B /* TeamCard.swift */,
-				990785BB26A1820A00314E02 /* ProjectNameOverview.swift */,
-				990785BF26A1860B00314E02 /* TeamsHeadline.swift */,
-				990785C326A1FB0200314E02 /* DisclosureList.swift */,
-				990785C726A6EDDC00314E02 /* TaskInformation.swift */,
-				990785CA26A6F0CC00314E02 /* TaskList.swift */,
 			);
 			path = "UI Elements";
 			sourceTree = "<group>";
@@ -356,6 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				99A719BB267B44B7009FF1D6 /* AccountView.swift */,
+				9970F41F26CE6F970080912B /* AccountViewModel.swift */,
 			);
 			path = AccountView;
 			sourceTree = "<group>";
@@ -550,7 +591,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9941C11226B80E4200FB7E67 /* ProjectTests.swift in Sources */,
+				9941C11226B80E4200FB7E67 /* TaskTests.swift in Sources */,
+				9970F41C26CE48120080912B /* AuthenticationTests.swift in Sources */,
+				9970F41E26CE48E80080912B /* MockAuthService.swift in Sources */,
 				9941C10A26B7E32100FB7E67 /* SoftManagementTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -585,6 +628,7 @@
 				99A719CF26808C85009FF1D6 /* ProgressBar.swift in Sources */,
 				99A719C0267B588D009FF1D6 /* TabContainerView.swift in Sources */,
 				99E617CB26830AEC00BE866B /* ProjectRepository.swift in Sources */,
+				9970F42026CE6F970080912B /* AccountViewModel.swift in Sources */,
 				99638A1A269ED9CF0037519B /* TeamInfoView.swift in Sources */,
 				9953A8842670EECB004AE7AC /* SignUpView.swift in Sources */,
 				990785C826A6EDDD00314E02 /* TaskInformation.swift in Sources */,

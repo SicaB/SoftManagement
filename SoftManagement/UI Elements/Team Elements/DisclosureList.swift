@@ -13,25 +13,18 @@ struct DisclosureList: View {
     var team: Team
     
     var body: some View {
-  
+        
         ForEach(team.tasks, id: \.self) { task in
             VStack{
-                
                 Text(task)
-                .font(.title3)
-                .foregroundColor(.white)
-                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: 20, alignment: .leading)
-                
+                    .font(.title3)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: 20, alignment: .leading)
             }
             Divider()
-            
-            
         }
-
-     }
-
-        
     }
+}
 
 
 struct DisclosureList_Previews: PreviewProvider {

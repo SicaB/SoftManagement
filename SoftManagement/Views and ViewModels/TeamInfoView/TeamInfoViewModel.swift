@@ -14,16 +14,8 @@ class TeamInfoViewModel: ObservableObject {
     @Published var task = Task(docId: "", title: "", description: "", workLoad: 0, isDone: false)
     @Published var allTasks: [Task] = []
     @Published var selectedTeam = Team(name: "", docId: "", tasks: [], teamWorkloadInHours: 0, hoursOfDoneWork: 0, workDonePercentage: 0.0)
-    {
-        didSet {
-            print("Selected teams total workload is now: \(self.selectedTeam.teamWorkloadInHours)")
-        }
-    }
     @Published var taskDocIds = [String]()
-    
     @Published var selectedProjectDocId = ""
-    
-    let group = DispatchGroup()
     
     init() {
         repository.isLoading = false
@@ -88,8 +80,7 @@ class TeamInfoViewModel: ObservableObject {
             print("selected team info: \(self.selectedTeam)")
         }
     }
-
-    
+  
     func getTasks(userDocId: String) {
         DispatchQueue.main.async { [self] in
             repository.isLoading = true

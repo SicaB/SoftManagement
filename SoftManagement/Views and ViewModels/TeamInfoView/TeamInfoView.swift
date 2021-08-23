@@ -13,18 +13,16 @@ struct TeamInfoView: View {
     @EnvironmentObject var appInfo: AppInformation
     @EnvironmentObject var authentication: Authentication
     @StateObject var viewModel = TeamInfoViewModel()
-    @State var showingAlert = false
-    @State var showingTaskAlert = false
+    @State private var showingAlert = false
+    @State private var showingTaskAlert = false
     
-    @State var days: Int = 0
-    @State var hours: Int = 0
+    @State private var days: Int = 0
+    @State private var hours: Int = 0
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     @State private var isExpanded = false
-    @State var uiTabarController: UITabBarController?
-    
-
+    @State private var uiTabarController: UITabBarController?
     
     var body: some View {
         ZStack {
@@ -102,7 +100,6 @@ struct TeamInfoView: View {
                 Divider()
                 
                 ScrollView{
-                    
                     Text("Create Task")
                         .font(.title2)
                         .bold()

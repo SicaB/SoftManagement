@@ -28,4 +28,14 @@ struct Team: Codable, Identifiable, Hashable{
     }
 }
 
+struct TeamMockData {
+    static let eksample1 = "iOS"
+    static let eksample2 = "Android"
+    static let eksample3 = "Design"
+    static let eksample4 = "Web"
+
+    static let eks = [eksample1, eksample2, eksample3, eksample4]
+
+}
+
 

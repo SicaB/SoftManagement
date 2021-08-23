@@ -2,7 +2,6 @@
 //  SoftManagementTests.swift
 //  SoftManagementTests
 //
-//  Created by Sacha Behrend on 02/08/2021.
 //
 
 import XCTest

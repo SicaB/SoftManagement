@@ -66,7 +66,7 @@ struct ListOfProjectsView: View {
     @ObservedObject var viewModel: ProjectListViewModel
     @EnvironmentObject var authentication: Authentication
     @EnvironmentObject var appInfo: AppInformation
-    @State var showingAlert = false
+    @State private var showingAlert = false
     @State private var selectedName: String?
     
     var body: some View {
@@ -172,29 +172,6 @@ struct ListOfProjectsView: View {
                                     )
 
                                 }
-                            //                            .animation(.spring())
-                            //                            .listRowBackground(self.selectedName == name.name && isAnimated ? Color.gray : Color(UIColor.systemGroupedBackground))
-
-                            //                            Button(action: {
-                            //
-                            //                            }) {
-                            //                                VStack{
-                            //                                    Image(systemName: "trash")
-                            //                                        .resizable()
-                            //                                        .aspectRatio(contentMode: .fit)
-                            //                                        .frame(width: 20, height: 30)
-                            //                                        .foregroundColor(Color(.gray))
-                            //
-                            //
-                            //                                }
-                            //                                .frame(width: 50, height: 80)
-                            //                                .onTapGesture {
-                            //
-                            //                                }
-                            //
-                            //
-                            //                            }
-                            //
                         }
                         .frame(maxWidth: .infinity, minHeight: 100)
                         .background(Color("card"))
@@ -202,15 +179,7 @@ struct ListOfProjectsView: View {
                         .shadow(color: Color("shadowgray"), radius: 10)
                         .padding(.vertical, 10)
                         .padding(.leading, 10)
-
                     }
-                    //.onDelete(perform: viewModel.deleteProject(at:))
-                    //.listRowBackground(Color("backgroundgray"))
-                    //                    .frame(maxWidth: .infinity, minHeight: 80)
-                    //                    .cornerRadius(25)
-                    //                    .padding(.vertical, 5)
-
-
                 }
                 .environment(\.defaultMinListRowHeight, 50)
                 .padding()
@@ -221,9 +190,7 @@ struct ListOfProjectsView: View {
             .padding(.top, -15)
             .padding(.bottom, 60)
             .padding (.trailing, 10)
-           
-            
-            
+
         }
         .sheet(isPresented: $appInfo.showSheetView, content: {
             if appInfo.activeSheet == .showProjectView {
@@ -235,17 +202,14 @@ struct ListOfProjectsView: View {
                     viewModel.getProjects(userDocId: appInfo.userDocId)
                     appInfo.anyProjectsInDB()
                 })
-                .environmentObject(self.authentication)
+                .environmentObject(self.appInfo)
             }
 
         })
         .background(Color("backgroundgray"))
         .navigationBarHidden(true)
         .onAppear(){
-
             viewModel.getProjects(userDocId: appInfo.userDocId)
-            print(appInfo.userDocId)
-
         }
     }
 }
@@ -297,11 +261,8 @@ struct NoProjectsView: View {
         .sheet(isPresented: $appInfo.showSheetView, content: {
             CreateProjectView(isPresented: $appInfo.showSheetView, didAddProject: {
                 project in
-                
                 viewModel.projectsInDB = true
                 appInfo.showPlanTab = true
-                
-                
             })
             .environmentObject(self.authentication)
             .environmentObject(self.appInfo)

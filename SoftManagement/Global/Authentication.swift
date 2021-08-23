@@ -8,35 +8,37 @@
 import SwiftUI
 import FirebaseAuth
 
-final class Authentication: ObservableObject {
+protocol AuthenticationProtocol {
+    func logIn(userEmail: String, userPassword: String, completion: @escaping (Result<Void, Error>, String) -> Void)
+    func signUp(name: String, username: String, email: String, password: String, completion: @escaping (Result<Void, Error>, String) -> Void)
+    func forgotPassword(email: String, completion: @escaping (Result<Void, Error>) -> Void)
+    func logOut()
+}
+
+final class Authentication: ObservableObject, AuthenticationProtocol {
  
-    
-    @Published var user = User(docId: "")
+   // @Published var user = User(docId: "")
     @Published var signedIn = false
-    @Published var alertItem: AlertItem?
-    @Published var repository = ProjectRepository()
+  //  @Published var alertItem: AlertItem?
+   // @Published var repository = ProjectRepository()
     @Published var userId = ""
 
-    
     let auth = Auth.auth()
     
     var isSignedIn: Bool {
         return auth.currentUser != nil
     }
     
-    func logIn(userEmail: String, userPassword: String) {
+    func logIn(userEmail: String, userPassword: String, completion: @escaping (Result<Void, Error>, String) -> Void) {
         auth.signIn(withEmail: userEmail,
                     password: userPassword) { [weak self] (result,
                         error) in
-            
-            if error != nil {
-                self?.alertItem = AlertContext.invalidLogin
-               
-                print(error?.localizedDescription ?? "")
-                
+            if let error = error {
+                print(error.localizedDescription)
+                completion(.failure(error), "")
             } else {
-
                 print("Succes!")
+                completion(.success(()), self!.auth.currentUser!.uid)
                
             guard result != nil, error == nil else {
                 print("error 1")
@@ -46,9 +48,7 @@ final class Authentication: ObservableObject {
                 // Success
                 self?.signedIn = true
                 self?.userId = self!.auth.currentUser!.uid
-                
             }
-            
         }
     }
     
@@ -60,18 +60,16 @@ final class Authentication: ObservableObject {
         self.userId = ""
     }
     
-    func signUp(name: String, username: String, email: String, password: String) {
+    func signUp(name: String, username: String, email: String, password: String, completion: @escaping (Result<Void, Error>, String) -> Void) {
         // check if the form has been correctly filled
-        guard isValidForm else { return }
         auth.createUser(withEmail: email, password: password) { [weak self] (result, error) in
-            self!.repository.saveUser(userId: self!.auth.currentUser!.uid, user: self!.user)
             
-            if error != nil {
-                print(error?.localizedDescription ?? "")
-                self?.alertItem = AlertContext.emailAlreadyInUse
+            if let error = error {
+                print(error.localizedDescription)
+                completion(.failure(error), "")
             } else {
                 print("Succes! You are signed in: ", "\(String(describing: self?.signedIn))")
-                // TODO: go to the right page...
+                completion(.success(()), self!.auth.currentUser!.uid)
             }
             guard result != nil, error == nil else {
                 return
@@ -84,33 +82,16 @@ final class Authentication: ObservableObject {
         }
     }
     
-    func forgotPassword(email: String) {
+    func forgotPassword(email: String, completion: @escaping (Result<Void, Error>) -> Void) {
         Auth.auth().sendPasswordReset(withEmail: email) { (error) in
-            if error == nil {
-                self.alertItem = AlertContext.resetPasswordEmailSent
+            if let error = error {
+                print(error.localizedDescription)
+                completion(.failure(error))
             } else {
-                self.alertItem = AlertContext.invalidEmailEnteredForReset
+                completion(.success(()))
             }
             
         }
-    }
-    
-    var isValidForm: Bool {
-        guard !user.name.isEmpty && !user.username.isEmpty && !user.email.isEmpty else {
-            alertItem = AlertContext.invalidForm
-            return false
-            
-        }
-        guard user.email.isValidEmail else {
-            alertItem = AlertContext.invalidEmail
-            return false
-        }
-        
-        guard user.password.count >= 6 else {
-            alertItem = AlertContext.invalidPassword
-            return false
-        }
-        return true
     }
     
 

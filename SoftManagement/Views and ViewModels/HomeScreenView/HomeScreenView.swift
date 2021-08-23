@@ -60,40 +60,33 @@ struct ListOfTeamsView: View {
     @EnvironmentObject var authentication: Authentication
     @ObservedObject var viewModel: HomeScreenViewModel
     
-    @State private var action: Int? = 0
-    @State private var tasksItems = [Task]()
-    @State var uiTabarController: UITabBarController?
     
+    @State private var tasksItems = [Task]()
+    @State private var uiTabarController: UITabBarController?
+    
+    @State private var action: Int? = 0
     var body: some View{
-        
         VStack(){
             NavigationLink(
-                destination: TeamInfoView().environmentObject(self.authentication), tag: 1, selection: $action){
-                
+                destination: TeamInfoView(), tag: 1, selection: $action){
             }
-
             ForEach(appInfo.teams) { team in
-                
                 DisclosureGroup(
                     content: {
-                        
                         Spacer(minLength: 15)
                         Divider()
                         DisclosureList(viewModel: viewModel, team: team)
-                        
                     }, label: {
                         Button(action: {
                             self.appInfo.selectedTeam = team
                             self.action = 1
                             appInfo.teamInfoViewIsOpen = true
-                            
                         }, label: {
                             if appInfo.repository.isLoading {
                                 LoadingView()
                             } else {
                                 TeamCard(title: team.name, value: team.workDonePercentage)
                             }
-                            
                         })
                     }
                 )
@@ -102,7 +95,6 @@ struct ListOfTeamsView: View {
                 .background(Color("card"))
                 .cornerRadius(25)
                 .shadow(color: Color("shadowgray"), radius: 10)
-                
             }
             
             AddTeamView(viewModel: viewModel)
@@ -123,7 +115,7 @@ struct ListOfTeamsView: View {
                     appInfo.anyProjectsInDB()
                     
                 })
-                .environmentObject(self.authentication)
+                .environmentObject(self.appInfo)
             }
             
         })

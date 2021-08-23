@@ -15,10 +15,12 @@ struct User: Codable, Identifiable {
     var email = ""
     var password = ""
     
-    init(docId: String) {
-        
+    init(docId: String, name: String, username: String, email: String, password: String) {
         self.docId = docId
-        
+        self.name = name
+        self.username = username
+        self.email = email
+        self.password = password
 
     }
 

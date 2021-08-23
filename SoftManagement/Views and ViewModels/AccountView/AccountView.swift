@@ -7,9 +7,34 @@
 
 import SwiftUI
 
+//struct AccountView: View {
+//    @EnvironmentObject var authentication: Authentication
+//    @StateObject var viewModel = AccountViewModel()
+//
+//
+//    var body: some View {
+//        ZStack {
+//            if viewModel.signedOut {
+//                LogInView()
+//            }
+//            else {
+//                AccountViewScreen(viewModel: viewModel).navigationBarHidden(true)
+//            }
+//
+//
+//        }
+//        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//        .background(Color("backgroundgray"))
+//        .ignoresSafeArea(edges: .all)
+//        .navigationViewStyle(StackNavigationViewStyle())
+//        .navigationBarHidden(true)
+//
+//    }
+//}
+
 struct AccountView: View {
-    @EnvironmentObject var authentication: Authentication
-    
+    @StateObject var viewModel = AccountViewModel()
+    @EnvironmentObject var appInfo: AppInformation
     var body: some View {
         ZStack {
             VStack{
@@ -17,7 +42,7 @@ struct AccountView: View {
                     .foregroundColor(Color("h1"))
                     
                 Button {
-                    authentication.logOut()
+                    viewModel.send(action: .logOut)
                 }
                 label: {
                     SoftBtn(title: "Sign Out", textColor: .white, backgroundColor: Color("teamcolor1"), opacity: 0.8)
@@ -27,12 +52,14 @@ struct AccountView: View {
             
  
         }
+        .onChange(of: viewModel.signedOut) { newValue in
+            appInfo.signedIn = false
+        }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("backgroundgray"))
         .ignoresSafeArea(edges: .all)
         .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarHidden(true)
-        
     }
 }
 
